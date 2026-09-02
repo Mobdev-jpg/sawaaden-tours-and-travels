@@ -30,4 +30,9 @@ window.addEventListener('resize', () => {
   if (window.innerWidth > 850) setMenuState(false);
 });
 
+const effects = document.createElement('link');
+effects.rel = 'stylesheet';
+effects.href = 'hover-effects.css';
+document.head.appendChild(effects);
+
 document.getElementById('year').textContent = new Date().getFullYear();
