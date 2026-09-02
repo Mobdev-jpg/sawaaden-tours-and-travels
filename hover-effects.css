@@ -1,0 +1,86 @@
+/* Small hover and click details for a more lively feel */
+
+@media (hover: hover) and (pointer: fine) {
+  .button,
+  .nav-cta,
+  .gallery-actions a,
+  .cta-actions a,
+  .card-body a {
+    transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+    will-change: transform;
+  }
+
+  .button:hover,
+  .nav-cta:hover,
+  .gallery-actions a:hover,
+  .cta-actions a:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 24px rgba(16, 45, 38, .18);
+  }
+
+  .card-body a:hover {
+    display: inline-block;
+    transform: translateY(-2px) scale(1.03);
+  }
+
+  .package-card,
+  .option-grid article,
+  .gallery-grid figure,
+  .photo-more-grid figure,
+  .review-card {
+    transition: transform .25s ease, box-shadow .25s ease;
+    will-change: transform;
+  }
+
+  .package-card:hover,
+  .option-grid article:hover,
+  .gallery-grid figure:hover,
+  .photo-more-grid figure:hover,
+  .review-card:hover {
+    transform: translateY(-7px) scale(1.015);
+    box-shadow: 0 16px 32px rgba(23, 34, 29, .14);
+  }
+
+  .package-card img,
+  .option-grid img,
+  .gallery-grid img,
+  .photo-more-grid img {
+    transition: transform .35s ease;
+  }
+
+  .package-card:hover img,
+  .option-grid article:hover img,
+  .gallery-grid figure:hover img,
+  .photo-more-grid figure:hover img {
+    transform: scale(1.045);
+  }
+
+  .destination-list a,
+  .band-more-grid a {
+    transition: transform .2s ease, padding-left .2s ease;
+  }
+
+  .destination-list a:hover,
+  .band-more-grid a:hover {
+    transform: translateX(5px);
+  }
+}
+
+.button:active,
+.nav-cta:active,
+.gallery-actions a:active,
+.cta-actions a:active,
+.card-body a:active {
+  transform: scale(.97);
+}
+
+.button:focus-visible,
+.nav-cta:focus-visible,
+.gallery-actions a:focus-visible,
+.cta-actions a:focus-visible,
+.card-body a:focus-visible,
+.destination-list a:focus-visible,
+.band-more-grid a:focus-visible {
+  outline: 3px solid rgba(201, 121, 55, .35);
+  outline-offset: 3px;
+}
