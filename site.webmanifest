@@ -1,0 +1,18 @@
+{
+  "name": "Sawaaden Tours & Travels",
+  "short_name": "Sawaaden",
+  "description": "Sikkim tour packages and travel planning from Gangtok.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f3ec",
+  "theme_color": "#173a31",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
