@@ -1,5 +1,3 @@
-/* Small hover and click details for a more lively feel */
-
 @media (hover: hover) and (pointer: fine) {
   .button,
   .nav-cta,
