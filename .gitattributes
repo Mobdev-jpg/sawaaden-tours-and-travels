@@ -1,3 +1,2 @@
-# Keep the site's CSS visible in GitHub language statistics.
 style.css linguist-language=CSS -linguist-generated
 *.css linguist-language=CSS -linguist-generated
