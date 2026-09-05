@@ -244,3 +244,85 @@
     line-height: 1.5;
   }
 }
+
+/* Desktop-only expanded regional catalog. The generated regional cards are the direct children after .band-more. */
+@media (min-width: 1101px) {
+  .destination-band > .band-more ~ * {
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+    align-self: stretch;
+  }
+
+  .destination-band > .band-more ~ * h2,
+  .destination-band > .band-more ~ * h3 {
+    font-size: clamp(28px, 2.1vw, 38px);
+    line-height: 1.1;
+  }
+
+  .destination-band > .band-more ~ * p {
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .destination-band > .band-more ~ * a,
+  .destination-band > .band-more ~ * span {
+    font-size: 14px;
+  }
+
+  /* Give the generated cards the same wide desktop footprint as the main destination showcase. */
+  .destination-band {
+    grid-template-columns: minmax(520px, 1fr) minmax(520px, 1fr);
+    column-gap: 42px;
+    row-gap: 28px;
+  }
+
+  /* The first generated regional card carries the matching editorial heading. */
+  .destination-band > .band-more ~ *:first-of-type {
+    position: relative;
+  }
+
+  .destination-band > .band-more ~ *:first-of-type::before {
+    content: 'DESTINATIONS ALONG THE WAY';
+    position: absolute;
+    right: calc(100% + 42px);
+    top: 2px;
+    width: 420px;
+    color: #b97835;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2.6px;
+    line-height: 1.2;
+    pointer-events: none;
+  }
+
+  .destination-band > .band-more ~ *:first-of-type::after {
+    content: 'More places.\A More ways to\A explore.';
+    white-space: pre-line;
+    position: absolute;
+    right: calc(100% + 42px);
+    top: 42px;
+    width: 420px;
+    color: #173a31;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(48px, 4.2vw, 78px);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -2px;
+    pointer-events: none;
+  }
+
+  .destination-band > .band-more ~ *:first-of-type {
+    margin-left: 0;
+  }
+}
+
+/* Keep the expanded regional catalog compact and safe on non-desktop screens. */
+@media (max-width: 1100px) {
+  .destination-band > .band-more ~ *::before,
+  .destination-band > .band-more ~ *::after {
+    display: none;
+  }
+}
