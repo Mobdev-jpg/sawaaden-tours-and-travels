@@ -83,7 +83,7 @@
   outline-offset: 3px;
 }
 
-/* Mobile fix: keep the expanded destination catalog above the fixed Plan My Trip button. */
+/* Mobile: keep the expanded destination catalog compact and unchanged in structure. */
 @media (max-width: 600px) {
   .band-more[open] {
     margin-bottom: 92px;
@@ -133,11 +133,12 @@
   }
 }
 
-/* Desktop only: match the large two-column destination showcase. */
+/* Desktop only: make the regional destination catalog as wide and visually substantial as the reference destination section. */
 @media (min-width: 1101px) {
   .destination-band {
-    grid-template-columns: minmax(420px, .78fr) minmax(700px, 1.22fr);
-    gap: 60px;
+    grid-template-columns: minmax(520px, 1fr) minmax(520px, 1fr);
+    column-gap: 52px;
+    row-gap: 34px;
     padding-left: 5%;
     padding-right: 5%;
   }
@@ -154,11 +155,11 @@
     font-size: 12px;
   }
 
+  /* Expanded list from the destination catalog. */
   .band-more {
-    position: relative;
+    grid-column: 1 / -1;
     width: 100%;
     margin-top: 18px;
-    padding: 34px 0 10px;
     border: 0;
     background: transparent;
   }
@@ -168,161 +169,104 @@
   }
 
   .band-more-grid {
-    position: relative;
     display: grid;
-    grid-template-columns: minmax(360px, .78fr) minmax(280px, 1fr) minmax(280px, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0 42px;
-    padding: 0;
-    align-items: start;
-  }
-
-  .band-more-grid::before {
-    content: 'WHERE WE TAKE YOU';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 360px;
-    color: #e7c28e;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 2.6px;
-    line-height: 1.2;
-    pointer-events: none;
-  }
-
-  .band-more-grid::after {
-    content: 'More places.\A More ways to\A explore.';
-    white-space: pre-line;
-    position: absolute;
-    left: 0;
-    top: 42px;
-    width: min(390px, 100%);
-    color: #e7e4dc;
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(48px, 4.1vw, 76px);
-    font-weight: 600;
-    line-height: 1.02;
-    letter-spacing: -2px;
-    pointer-events: none;
-  }
-
-  .band-more::after {
-    content: 'Sikkim has different landscapes, cultures and experiences across every region. Explore destinations along the way and we will help turn that idea into a trip made around you.';
-    position: absolute;
-    left: 0;
-    top: 350px;
-    width: min(430px, 34%);
-    color: #c7cec9;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-    pointer-events: none;
   }
 
   .band-more-grid a {
     min-width: 0;
     padding: 16px 0 18px;
-    border-top: 1px solid rgba(184,199,187,.28);
-  }
-
-  .band-more-grid a:nth-child(odd) {
-    grid-column: 2;
-  }
-
-  .band-more-grid a:nth-child(even) {
-    grid-column: 3;
+    border-top: 1px solid rgba(184,199,187,.45);
   }
 
   .band-more-grid b {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.25;
   }
 
   .band-more-grid small {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.5;
   }
-}
 
-/* Desktop-only expanded regional catalog. The generated regional cards are the direct children after .band-more. */
-@media (min-width: 1101px) {
-  .destination-band > .band-more ~ * {
-    min-width: 0;
+  /* The script-generated regional catalog. */
+  .destination-catalog {
+    grid-column: 1 / -1;
     width: 100%;
     max-width: none;
-    align-self: stretch;
-  }
-
-  .destination-band > .band-more ~ * h2,
-  .destination-band > .band-more ~ * h3 {
-    font-size: clamp(28px, 2.1vw, 38px);
-    line-height: 1.1;
-  }
-
-  .destination-band > .band-more ~ * p {
-    max-width: 100%;
-    font-size: 15px;
-    line-height: 1.65;
-  }
-
-  .destination-band > .band-more ~ * a,
-  .destination-band > .band-more ~ * span {
-    font-size: 14px;
-  }
-
-  /* Give the generated cards the same wide desktop footprint as the main destination showcase. */
-  .destination-band {
-    grid-template-columns: minmax(520px, 1fr) minmax(520px, 1fr);
-    column-gap: 42px;
-    row-gap: 28px;
-  }
-
-  /* The first generated regional card carries the matching editorial heading. */
-  .destination-band > .band-more ~ *:first-of-type {
+    display: grid !important;
+    grid-template-columns: minmax(400px, .9fr) minmax(300px, 1fr) minmax(300px, 1fr);
+    column-gap: 48px;
+    row-gap: 18px;
+    align-items: start;
+    margin-top: 8px;
     position: relative;
   }
 
-  .destination-band > .band-more ~ *:first-of-type::before {
-    content: 'DESTINATIONS ALONG THE WAY';
-    position: absolute;
-    right: calc(100% + 42px);
-    top: 2px;
-    width: 420px;
-    color: #b97835;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 2.6px;
-    line-height: 1.2;
-    pointer-events: none;
-  }
-
-  .destination-band > .band-more ~ *:first-of-type::after {
-    content: 'More places.\A More ways to\A explore.';
+  /* Left editorial column: same visual language as the reference image. */
+  .destination-catalog::before {
+    content: 'DESTINATIONS ON THE WAY\A\A More places.\A More ways to\A explore.';
     white-space: pre-line;
-    position: absolute;
-    right: calc(100% + 42px);
-    top: 42px;
-    width: 420px;
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    min-height: 390px;
+    padding: 4px 10px 20px 0;
     color: #173a31;
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(48px, 4.2vw, 78px);
+    font-size: clamp(44px, 4vw, 74px);
     font-weight: 600;
-    line-height: 1.02;
+    line-height: 1.03;
     letter-spacing: -2px;
-    pointer-events: none;
   }
 
-  .destination-band > .band-more ~ *:first-of-type {
-    margin-left: 0;
+  /* Six regional cards fill the two wider columns in the same 2-up rhythm. */
+  .destination-catalog .destination-region {
+    min-width: 0;
+    width: 100%;
+    margin: 0;
+    padding: 24px 24px 26px;
+    border-radius: 18px;
+    background: rgba(0,0,0,.055);
+    border: 1px solid rgba(23,58,49,.045);
+  }
+
+  .destination-catalog .destination-region:nth-child(1) { grid-column: 2; grid-row: 1; }
+  .destination-catalog .destination-region:nth-child(2) { grid-column: 3; grid-row: 1; }
+  .destination-catalog .destination-region:nth-child(3) { grid-column: 2; grid-row: 2; }
+  .destination-catalog .destination-region:nth-child(4) { grid-column: 3; grid-row: 2; }
+  .destination-catalog .destination-region:nth-child(5) { grid-column: 2; grid-row: 3; }
+  .destination-catalog .destination-region:nth-child(6) { grid-column: 3; grid-row: 3; }
+
+  .destination-catalog .destination-region h3 {
+    font-size: clamp(25px, 2vw, 34px);
+    margin-bottom: 10px;
+  }
+
+  .destination-catalog .destination-region p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .destination-catalog .destination-place-list {
+    gap: 8px;
+  }
+
+  .destination-catalog .destination-place-list span {
+    font-size: 11px;
+    padding: 8px 10px;
   }
 }
 
-/* Keep the expanded regional catalog compact and safe on non-desktop screens. */
+/* Do not apply the desktop editorial layout to tablet/mobile. */
 @media (max-width: 1100px) {
-  .destination-band > .band-more ~ *::before,
-  .destination-band > .band-more ~ *::after {
+  .destination-catalog::before {
     display: none;
+  }
+
+  .destination-catalog {
+    width: 100%;
+    max-width: none;
   }
 }
