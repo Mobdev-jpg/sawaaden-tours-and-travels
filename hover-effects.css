@@ -133,7 +133,7 @@
   }
 }
 
-/* Desktop only: make the destination catalog match the large showcase layout. */
+/* Desktop only: match the large two-column destination showcase. */
 @media (min-width: 1101px) {
   .destination-band {
     grid-template-columns: minmax(420px, .78fr) minmax(700px, 1.22fr);
@@ -192,7 +192,7 @@
   }
 
   .band-more-grid::after {
-    content: 'More places.\A More ways to\A explore.\A\A Sikkim has different landscapes, cultures and experiences across every region. Explore destinations along the way and we will help turn that idea into a trip made around you.';
+    content: 'More places.\A More ways to\A explore.';
     white-space: pre-line;
     position: absolute;
     left: 0;
@@ -204,6 +204,19 @@
     font-weight: 600;
     line-height: 1.02;
     letter-spacing: -2px;
+    pointer-events: none;
+  }
+
+  .band-more::after {
+    content: 'Sikkim has different landscapes, cultures and experiences across every region. Explore destinations along the way and we will help turn that idea into a trip made around you.';
+    position: absolute;
+    left: 0;
+    top: 350px;
+    width: min(430px, 34%);
+    color: #c7cec9;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
     pointer-events: none;
   }
 
