@@ -133,7 +133,7 @@
   }
 }
 
-/* Desktop only: give the destination catalog more horizontal space without changing tablet/mobile. */
+/* Desktop only: make the destination catalog match the large showcase layout. */
 @media (min-width: 1101px) {
   .destination-band {
     grid-template-columns: minmax(420px, .78fr) minmax(700px, 1.22fr);
@@ -154,7 +154,80 @@
     font-size: 12px;
   }
 
+  .band-more {
+    position: relative;
+    width: 100%;
+    margin-top: 18px;
+    padding: 34px 0 10px;
+    border: 0;
+    background: transparent;
+  }
+
+  .band-more > summary {
+    display: none;
+  }
+
   .band-more-grid {
-    gap: 0 36px;
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(360px, .78fr) minmax(280px, 1fr) minmax(280px, 1fr);
+    gap: 0 42px;
+    padding: 0;
+    align-items: start;
+  }
+
+  .band-more-grid::before {
+    content: 'WHERE WE TAKE YOU';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 360px;
+    color: #e7c28e;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2.6px;
+    line-height: 1.2;
+    pointer-events: none;
+  }
+
+  .band-more-grid::after {
+    content: 'More places.\A More ways to\A explore.\A\A Sikkim has different landscapes, cultures and experiences across every region. Explore destinations along the way and we will help turn that idea into a trip made around you.';
+    white-space: pre-line;
+    position: absolute;
+    left: 0;
+    top: 42px;
+    width: min(390px, 100%);
+    color: #e7e4dc;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(48px, 4.1vw, 76px);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -2px;
+    pointer-events: none;
+  }
+
+  .band-more-grid a {
+    min-width: 0;
+    padding: 16px 0 18px;
+    border-top: 1px solid rgba(184,199,187,.28);
+  }
+
+  .band-more-grid a:nth-child(odd) {
+    grid-column: 2;
+  }
+
+  .band-more-grid a:nth-child(even) {
+    grid-column: 3;
+  }
+
+  .band-more-grid b {
+    font-size: 22px;
+    line-height: 1.25;
+  }
+
+  .band-more-grid small {
+    font-size: 13px;
+    line-height: 1.5;
   }
 }
