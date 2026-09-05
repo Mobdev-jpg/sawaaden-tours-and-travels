@@ -82,3 +82,53 @@
   outline: 3px solid rgba(201, 121, 55, .35);
   outline-offset: 3px;
 }
+
+/* Mobile fix: keep the expanded destination catalog above the fixed Plan My Trip button. */
+@media (max-width: 600px) {
+  .band-more[open] {
+    margin-bottom: 92px;
+  }
+
+  .band-more-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0 12px;
+  }
+
+  .band-more-grid a {
+    min-width: 0;
+    padding: 11px 0;
+  }
+
+  .band-more-grid b {
+    font-size: 13px;
+    line-height: 1.2;
+  }
+
+  .band-more-grid small {
+    font-size: 9px;
+    line-height: 1.35;
+  }
+
+  .band-more > summary {
+    font-size: 13px;
+    padding: 14px 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .band-more[open] {
+    margin-bottom: 88px;
+  }
+
+  .band-more-grid {
+    gap: 0 9px;
+  }
+
+  .band-more-grid b {
+    font-size: 12px;
+  }
+
+  .band-more-grid small {
+    font-size: 8px;
+  }
+}
