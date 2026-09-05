@@ -37,9 +37,3 @@ document.head.appendChild(effects);
 
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
-
-// Sawaaden AI travel planner
-const chatbot = document.createElement('script');
-chatbot.src = 'chatbot.js';
-chatbot.defer = true;
-document.body.appendChild(chatbot);
