@@ -15,7 +15,7 @@
   .package-card,.option-grid article,.gallery-grid figure,.photo-more-grid figure,.review-card { transition:transform .25s ease,box-shadow .25s ease; will-change:transform; }
   .package-card:hover,.option-grid article:hover,.gallery-grid figure:hover,.photo-more-grid figure:hover,.review-card:hover { transform:translateY(-7px) scale(1.015); box-shadow:0 16px 32px rgba(23,34,29,.14); }
   .package-card img,.option-grid img,.gallery-grid img,.photo-more-grid img { transition:transform .35s ease; }
-  .package-card:hover img,.option-grid article:hover img,.gallery-grid figure:hover img,.photo-more-grid figure:hover img { transform:scale(1.045); }
+  .package-card:hover img,.option-grid article:hover img,.gallery-grid img:hover,.photo-more-grid img:hover { transform:scale(1.045); }
   .destination-list a,.band-more-grid a { transition:transform .2s ease,padding-left .2s ease; }
   .destination-list a:hover,.band-more-grid a:hover { transform:translateX(5px); }
 }
@@ -49,7 +49,6 @@
   .destination-list b{font-size:20px;}
   .destination-list small{font-size:12px;}
 
-  /* The generated regional catalog replaces the older expandable list on desktop. */
   .band-more{display:none !important;}
 
   .destination-catalog{
@@ -110,7 +109,39 @@
   .destination-catalog .destination-place-list span{font-size:11px;padding:8px 10px;}
 }
 
+/* Mobile/tablet: keep the regional cards in their existing responsive layout,
+   but add the same editorial heading above them. */
 @media (max-width:1100px) {
-  .destination-catalog::before{display:none;}
-  .destination-catalog{width:100%;max-width:none;}
+  .destination-catalog{
+    width:100%;
+    max-width:none;
+  }
+  .destination-catalog::before{
+    content:'DESTINATIONS ON THE WAY';
+    display:block;
+    width:100%;
+    margin:0 0 12px;
+    padding:0;
+    color:#f6f3ec;
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:clamp(30px,8vw,48px);
+    font-weight:600;
+    line-height:1.05;
+    letter-spacing:-1px;
+  }
+}
+
+@media (max-width:600px) {
+  .destination-catalog::before{
+    margin-bottom:18px;
+    font-size:34px;
+    line-height:1.08;
+  }
+}
+
+@media (max-width:380px) {
+  .destination-catalog::before{
+    margin-bottom:15px;
+    font-size:30px;
+  }
 }
