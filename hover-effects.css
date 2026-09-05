@@ -37,60 +37,52 @@
   .band-more-grid small{font-size:8px;}
 }
 
-/* Desktop destination catalog: one editorial column + two equal destination columns. */
+/* Desktop destination catalog: fixed editorial rail + two equal region columns. */
 @media (min-width:1101px) {
   .destination-band{
     grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
     column-gap:52px;
     row-gap:34px;
-    padding-left:5%;
-    padding-right:5%;
+    padding:64px 5% 90px;
   }
   .destination-list{gap:0 42px;}
   .destination-list b{font-size:20px;}
   .destination-list small{font-size:12px;}
 
-  .band-more{
-    grid-column:1 / -1;
-    width:100%;
-    margin-top:18px;
-    border:0;
-    background:transparent;
-  }
-  .band-more>summary{display:none;}
-  .band-more-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 42px;}
-  .band-more-grid a{min-width:0;padding:16px 0 18px;border-top:1px solid rgba(184,199,187,.45);}
-  .band-more-grid b{font-size:20px;line-height:1.25;}
-  .band-more-grid small{font-size:12px;line-height:1.5;}
+  /* The generated regional catalog replaces the older expandable list on desktop. */
+  .band-more{display:none !important;}
 
   .destination-catalog{
     grid-column:1 / -1 !important;
     width:100% !important;
     max-width:none !important;
     display:grid !important;
-    grid-template-columns:minmax(250px,.72fr) minmax(0,1fr) minmax(0,1fr) !important;
+    grid-template-columns:minmax(320px,.68fr) minmax(0,1fr) minmax(0,1fr) !important;
     grid-auto-flow:row;
-    column-gap:28px !important;
-    row-gap:18px !important;
+    column-gap:34px !important;
+    row-gap:22px !important;
     align-items:start;
-    margin-top:8px;
+    margin:0 !important;
     position:relative;
   }
 
   .destination-catalog::before{
-    content:'DESTINATIONS ON THE WAY\A\A More places.\A More ways to\A explore.';
+    content:'DESTINATIONS\AON THE WAY\A\AMore places.\AMore ways to\Aexplore.';
     white-space:pre-line;
     grid-column:1 !important;
     grid-row:1 / span 3 !important;
     align-self:start;
-    min-height:390px;
-    padding:4px 18px 20px 0;
+    width:100%;
+    max-width:340px;
+    min-height:0;
+    padding:4px 10px 20px 0;
     color:#f6f3ec !important;
     font-family:'Playfair Display',Georgia,serif;
-    font-size:clamp(42px,3.9vw,72px);
+    font-size:clamp(42px,3.25vw,60px);
     font-weight:600;
     line-height:1.03;
-    letter-spacing:-2px;
+    letter-spacing:-1.8px;
+    overflow-wrap:normal;
   }
 
   .destination-catalog .destination-region{
