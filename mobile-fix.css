@@ -1,0 +1,172 @@
+/* Mobile layout fixes for Sawaaden Tours & Travels */
+
+@media (max-width: 850px) {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    overflow-x: hidden;
+  }
+
+  main,
+  .site-header,
+  .site-footer,
+  .hero,
+  .trust-strip,
+  .section,
+  .destination-band,
+  .cta-section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Use the actual uploaded logo image. */
+  .brand-mark {
+    position: relative;
+    width: 44px !important;
+    height: 44px !important;
+    flex: 0 0 44px !important;
+    background: #f6f3ec !important;
+    border: 1px solid rgba(201,121,55,.28) !important;
+    box-shadow: 0 3px 10px rgba(16,45,38,.12) !important;
+  }
+
+  .brand-logo {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  .brand {
+    min-width: 0 !important;
+    flex: 1 1 auto;
+  }
+
+  .brand > span:last-child {
+    min-width: 0;
+  }
+
+  /* Keep the mobile menu inside the viewport. */
+  .nav-links.open {
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    box-sizing: border-box !important;
+    z-index: 100;
+  }
+
+  /* Prevent the footer links from running into each other. */
+  .site-footer {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 26px !important;
+    padding: 44px 7% 100px !important;
+    box-sizing: border-box !important;
+  }
+
+  .site-footer > div {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .site-footer > div:first-child strong,
+  .site-footer > div:first-child span {
+    display: block !important;
+    white-space: normal !important;
+  }
+
+  .site-footer > div:first-child strong {
+    margin-bottom: 5px;
+  }
+
+  .site-footer > div:nth-child(2) {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px 18px !important;
+    align-items: start !important;
+  }
+
+  .site-footer > div:nth-child(2) a {
+    display: block !important;
+    min-width: 0 !important;
+    white-space: normal !important;
+    line-height: 1.35 !important;
+    font-size: 14px !important;
+  }
+
+  .site-footer > small {
+    display: block !important;
+    width: 100% !important;
+    border-top: 1px solid #29443c !important;
+    padding-top: 18px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Keep the bottom CTA clear of the footer and browser controls. */
+  .nav-cta {
+    display: flex !important;
+    position: fixed !important;
+    left: 5vw !important;
+    right: 5vw !important;
+    bottom: 18px !important;
+    width: auto !important;
+    max-width: none !important;
+    height: 58px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 22px !important;
+    z-index: 1000 !important;
+    box-shadow: 0 8px 24px rgba(16,45,38,.18) !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header {
+    height: 70px !important;
+    padding: 0 5% !important;
+  }
+
+  .brand-mark {
+    width: 42px !important;
+    height: 42px !important;
+    flex-basis: 42px !important;
+  }
+
+  .brand strong {
+    font-size: 18px !important;
+  }
+
+  .site-footer {
+    padding-left: 7% !important;
+    padding-right: 7% !important;
+  }
+
+  .site-footer > div:nth-child(2) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .site-footer > div:nth-child(2) {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px 12px !important;
+  }
+
+  .site-footer > div:nth-child(2) a {
+    font-size: 13px !important;
+  }
+}
