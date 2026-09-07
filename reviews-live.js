@@ -5,7 +5,7 @@
   const googleMapsUrl = `https://www.google.com/maps/place/?q=place_id:${placeId}`;
   const brandName = 'Sawaaden Tours & Travels';
   const siteTitle = 'Sawaaden Tours & Travels — Discover the Northeast with Us';
-  const siteDescription = 'Sikkim Sawaaden Tours and Travels, popularly known as Silk Route Tourism, is a trusted travel company based in Gangtok';
+  const siteDescription = 'We are dedicated to providing authentic and memorable travel experiences across Sikkim and the Eastern Himalayas.';
   const siteUrl = 'https://sikkimtouraandtravel.in/';
   const logoUrl = `${siteUrl}favicon.png?v=2`;
 
@@ -69,7 +69,20 @@
     }
 
     const heroCopy = document.querySelector('.hero-copy');
-    if (heroCopy) heroCopy.textContent = siteDescription;
+    if (heroCopy) heroCopy.remove();
+
+    const aboutHeading = document.querySelector('.story-copy h2');
+    if (aboutHeading) aboutHeading.innerHTML = 'About Sikkim Sawaaden<br>Tours & Travels.';
+
+    const aboutSummary = document.querySelector('.story-summary');
+    if (aboutSummary) aboutSummary.textContent = 'We provide authentic and memorable travel experiences across Sikkim and the Eastern Himalayas.';
+
+    const aboutDetails = document.querySelector('.story-details');
+    if (aboutDetails) {
+      aboutDetails.setAttribute('aria-label', 'About Sikkim Sawaaden Tours and Travels');
+      const summary = aboutDetails.querySelector('summary');
+      if (summary) summary.firstChild.textContent = 'Read more about Sikkim Sawaaden Tours and Travels';
+    }
 
     if (!document.querySelector('#sawaaden-website-schema')) {
       const schema = document.createElement('script');
@@ -94,11 +107,28 @@
     }
   };
 
+  const removePriceBenchmarkNote = () => {
+    const marker = 'Displayed prices are researched 2026 market benchmarks';
+    document.querySelectorAll('body *').forEach((el) => {
+      if (el.children.length === 0 && el.textContent.includes(marker)) {
+        const container = el.closest('.price-note, .price-booking-note, .booking-note, .note, .modal-note') || el.parentElement;
+        if (container) container.remove();
+      }
+    });
+  };
+
+  const watchDynamicTourModal = () => {
+    removePriceBenchmarkNote();
+    const observer = new MutationObserver(removePriceBenchmarkNote);
+    observer.observe(document.body, { childList: true, subtree: true });
+    setTimeout(() => observer.disconnect(), 30000);
+  };
+
   const escapeHtml = (value) => String(value ?? '')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
+    .replace(/\"/g, '&quot;')
     .replace(/'/g, '&#039;');
 
   const stars = (rating) => {
@@ -209,6 +239,7 @@
   const loadLiveReviews = async () => {
     applyBrandIdentity();
     injectStyles();
+    watchDynamicTourModal();
     try {
       const response = await fetch('/api/reviews', { headers: { Accept: 'application/json' }, cache: 'no-store' });
       if (!response.ok) throw new Error(`Reviews API returned ${response.status}`);
