@@ -107,10 +107,10 @@
     }
   };
 
-  const removePriceBenchmarkNote = () => {
-    const marker = 'Displayed prices are researched 2026 market benchmarks';
+  const removePriceBookingNotes = () => {
+    const marker = 'Price & booking note';
     document.querySelectorAll('body *').forEach((el) => {
-      if (el.children.length === 0 && el.textContent.includes(marker)) {
+      if (el.children.length === 0 && el.textContent.trim().startsWith(marker)) {
         const container = el.closest('.price-note, .price-booking-note, .booking-note, .note, .modal-note') || el.parentElement;
         if (container) container.remove();
       }
@@ -118,10 +118,10 @@
   };
 
   const watchDynamicTourModal = () => {
-    removePriceBenchmarkNote();
-    const observer = new MutationObserver(removePriceBenchmarkNote);
+    removePriceBookingNotes();
+    const observer = new MutationObserver(removePriceBookingNotes);
     observer.observe(document.body, { childList: true, subtree: true });
-    setTimeout(() => observer.disconnect(), 30000);
+    setTimeout(() => observer.disconnect(), 60000);
   };
 
   const escapeHtml = (value) => String(value ?? '')
