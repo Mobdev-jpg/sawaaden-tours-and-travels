@@ -4,6 +4,80 @@
   const placeId = 'ChIJs2CCbxWl5jkR2Ovr-s0qSyk';
   const googleMapsUrl = `https://www.google.com/maps/place/?q=place_id:${placeId}`;
 
+  const applyBrandIdentity = () => {
+    const brandName = 'Sawaaden Tours & Travels';
+    const siteTitle = 'Sawaaden Tours & Travels — Discover the Northeast with Us';
+    document.title = siteTitle;
+
+    const setMeta = (selector, attribute, value) => {
+      let el = document.querySelector(selector);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attribute === 'property' ? 'property' : 'name', selector.includes('[property=') ? selector.match(/\[property="([^"]+)"\]/)?.[1] || '' : selector.match(/\[name="([^"]+)"\]/)?.[1] || '');
+        document.head.appendChild(el);
+      }
+      el.setAttribute(attribute, value);
+    };
+
+    const upsertMeta = (key, value, type = 'property') => {
+      let el = document.head.querySelector(`meta[${type}="${key}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(type, key);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', value);
+    };
+
+    upsertMeta('og:site_name', brandName);
+    upsertMeta('og:title', siteTitle);
+    upsertMeta('og:description', 'A distinguished Sikkim-based tourism operator helping travellers explore Sikkim and the wider Northeast with practical itineraries, local route knowledge and personalised travel support.');
+    upsertMeta('og:url', 'https://sikkimtouraandtravel.in/');
+    upsertMeta('og:image', 'https://sikkimtouraandtravel.in/favicon.svg');
+    upsertMeta('twitter:title', siteTitle, 'name');
+    upsertMeta('twitter:description', 'Explore Sikkim and the Northeast with Sawaaden Tours & Travels — local route planning, stays, transport, sightseeing and travel support.', 'name');
+    upsertMeta('twitter:image', 'https://sikkimtouraandtravel.in/favicon.svg', 'name');
+
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.href = 'https://sikkimtouraandtravel.in/';
+
+    const existingBrand = document.querySelector('.brand-identity-heading');
+    if (!existingBrand) {
+      const hero = document.querySelector('.hero-content');
+      if (hero) {
+        const heading = document.createElement('p');
+        heading.className = 'brand-identity-heading';
+        heading.textContent = siteTitle;
+        hero.insertBefore(heading, hero.querySelector('.eyebrow') || hero.firstChild);
+      }
+    }
+
+    const heroCopy = document.querySelector('.hero-copy');
+    if (heroCopy) {
+      heroCopy.textContent = 'Sawaaden Tours & Travels is a distinguished Sikkim-based tourism operator, creating practical, memorable Himalayan journeys with local route knowledge, carefully planned stays, reliable transportation and personalised travel support.';
+    }
+
+    const storyCopy = document.querySelector('.story-copy');
+    const storyParagraph = storyCopy?.querySelector('p:nth-of-type(2)');
+    if (storyParagraph) {
+      storyParagraph.textContent = 'Sawaaden Tours & Travels is a distinguished tourism operator based in Gangtok, Sikkim, helping travellers experience the region through thoughtfully planned itineraries, local knowledge, comfortable stays, transportation and dependable on-trip support. From the high passes of East Sikkim to North Sikkim, the Silk Route, West Sikkim, South Sikkim and Darjeeling, every journey is planned around the traveller’s route, pace and priorities.';
+    }
+
+    if (!document.querySelector('#sawaaden-website-schema')) {
+      const schema = document.createElement('script');
+      schema.id = 'sawaaden-website-schema';
+      schema.type = 'application/ld+json';
+      schema.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: brandName,
+        alternateName: ['Sawaaden', 'Sawaaden Tours & Travels', 'Sikkim Sawaaden Tours and Travels'],
+        url: 'https://sikkimtouraandtravel.in/'
+      });
+      document.head.appendChild(schema);
+    }
+  };
+
   const escapeHtml = (value) => String(value ?? '')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -20,6 +94,7 @@
   const injectStyles = () => {
     const style = document.createElement('style');
     style.textContent = `
+      .brand-identity-heading{margin:0 0 10px;font-size:clamp(16px,2vw,22px);font-weight:700;letter-spacing:.01em;color:#f4eee2}
       .live-review-status{font-size:11px;color:#aebdb6;margin:12px 0 0;line-height:1.5}
       .live-review-status a{color:#e7c28e;text-decoration:underline}
       .review-card.live-review{display:flex;flex-direction:column}
@@ -31,6 +106,7 @@
         .reviews-section{padding-bottom:120px}
         .live-review .review-meta{display:block}
         .live-review .review-date{display:block;margin-top:3px}
+        .brand-identity-heading{font-size:14px;line-height:1.35}
       }
       @media(max-width:600px){
         .band-more[open]{margin-bottom:82px}
@@ -102,6 +178,7 @@
   };
 
   const loadLiveReviews = async () => {
+    applyBrandIdentity();
     injectStyles();
     try {
       const response = await fetch('/api/reviews', { headers: { Accept: 'application/json' }, cache: 'no-store' });
