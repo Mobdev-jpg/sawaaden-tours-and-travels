@@ -1,10 +1,10 @@
-/* Small hover and click details for a more lively feel */
+/* Hover effects only. Responsive layout stays in style.css. */
 @media (hover:hover) and (pointer:fine){
   .button,.nav-cta,.gallery-actions a,.cta-actions a,.card-body a{transition:transform .2s ease,box-shadow .2s ease,background-color .2s ease;will-change:transform}
   .button:hover,.nav-cta:hover,.gallery-actions a:hover,.cta-actions a:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 10px 24px rgba(16,45,38,.18)}
   .card-body a:hover{display:inline-block;transform:translateY(-2px) scale(1.03)}
-  .package-card,.option-grid article,.gallery-grid figure,.review-card,.photo-more-grid figure{transition:transform .25s ease,box-shadow .25s ease;will-change:transform}
-  .package-card:hover,.option-grid article:hover,.gallery-grid figure:hover,.review-card:hover,.photo-more-grid figure:hover{transform:translateY(-7px) scale(1.015);box-shadow:0 16px 32px rgba(23,34,29,.14)}
+  .package-card,.option-grid article,.gallery-grid figure,.photo-more-grid figure,.review-card{transition:transform .25s ease,box-shadow .25s ease;will-change:transform}
+  .package-card:hover,.option-grid article:hover,.gallery-grid figure:hover,.photo-more-grid figure:hover,.review-card:hover{transform:translateY(-7px) scale(1.015);box-shadow:0 16px 32px rgba(23,34,29,.14)}
   .package-card img,.option-grid img,.gallery-grid img,.photo-more-grid img{transition:transform .35s ease}
   .package-card:hover img,.option-grid article:hover img,.gallery-grid figure:hover img,.photo-more-grid figure:hover img{transform:scale(1.045)}
   .destination-list a,.band-more-grid a{transition:transform .2s ease,padding-left .2s ease}
@@ -12,77 +12,3 @@
 }
 .button:active,.nav-cta:active,.gallery-actions a:active,.cta-actions a:active,.card-body a:active{transform:scale(.97)}
 .button:focus-visible,.nav-cta:focus-visible,.gallery-actions a:focus-visible,.cta-actions a:focus-visible,.card-body a:focus-visible,.destination-list a:focus-visible,.band-more-grid a:focus-visible{outline:3px solid rgba(201,121,55,.35);outline-offset:3px}
-
-/* Keep all image cards visible and stable. */
-.package-card img,.option-grid img,.gallery-grid img,.photo-more-grid img{display:block;width:100%;object-fit:cover}
-
-/* Restore the mobile layout that was working correctly: compact header,
-   two-column tour cards, clean menu, footer wrapping and fixed trip CTA. */
-@media (max-width:850px){
-  html,body{width:100%;max-width:100%;min-width:0;margin:0;overflow-x:hidden}
-  main,.site-header,.site-footer,.hero,.trust-strip,.section,.destination-band,.cta-section{width:100%;max-width:100%}
-  body{padding-bottom:76px}
-
-  .site-header{height:68px;padding:0 5%;box-shadow:0 2px 12px rgba(23,34,29,.05)}
-  .brand{min-width:0;flex:1 1 auto;gap:9px}
-  .brand-mark{width:40px;height:40px;flex:0 0 40px}
-  .brand strong{font-size:18px}
-  .brand small{font-size:9px;letter-spacing:1.6px;margin-top:3px}
-
-  .menu-toggle{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;cursor:pointer;color:#173a31}
-  .nav-links.open{top:68px;left:0;right:0;width:100%;max-width:100%;padding:14px 5% 20px;box-sizing:border-box;z-index:100;box-shadow:0 12px 24px rgba(23,34,29,.08)}
-  .nav-links a{display:flex;align-items:center;min-height:44px;font-size:15px;font-weight:600}
-
-  .nav-cta{display:flex;position:fixed;z-index:1000;left:5%;right:5%;bottom:14px;width:auto;max-width:none;justify-content:center;align-items:center;min-height:48px;height:48px;padding:0 20px;box-shadow:0 8px 24px rgba(16,45,38,.22)}
-
-  /* Preserve the compact two-column package layout on mobile/tablet. */
-  .package-grid{grid-template-columns:1fr 1fr;gap:14px}
-  .package-card img,.package-card.featured img{height:190px}
-  .card-body{padding:16px}
-  .card-body h3{font-size:21px}
-  .card-body p{font-size:12px;margin-bottom:14px}
-
-  .gallery-grid,.review-grid,.option-grid,.photo-more-grid{grid-template-columns:1fr 1fr;gap:12px}
-  .gallery-grid img{height:190px}
-  .option-grid img{height:150px}
-  .photo-more-grid img{height:170px}
-
-  .destination-list{grid-template-columns:1fr}
-
-  .site-footer{display:grid;grid-template-columns:1fr;gap:26px;padding:44px 7% 100px;box-sizing:border-box}
-  .site-footer>div{min-width:0;width:100%}
-  .site-footer>div:first-child strong,.site-footer>div:first-child span{display:block;white-space:normal}
-  .site-footer>div:first-child strong{margin-bottom:5px}
-  .site-footer>div:nth-child(2){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;align-items:start}
-  .site-footer>div:nth-child(2) a{display:block;min-width:0;white-space:normal;line-height:1.35;font-size:14px}
-  .site-footer>small{display:block;width:100%;border-top:1px solid #29443c;padding-top:18px;line-height:1.5}
-}
-
-@media (max-width:600px){
-  .band-more[open]{margin-bottom:92px}
-  .band-more-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:0 12px}
-  .band-more-grid a{min-width:0;padding:11px 0}
-  .band-more-grid b{font-size:13px;line-height:1.2}
-  .band-more-grid small{font-size:9px;line-height:1.35}
-  .band-more>summary{font-size:13px;padding:14px 0}
-}
-
-@media (max-width:520px){
-  .site-header{height:70px;padding:0 5%}
-  .brand-mark{width:42px;height:42px;flex-basis:42px}
-  .brand strong{font-size:18px}
-  .site-footer{padding-left:7%;padding-right:7%}
-  .gallery-grid,.review-grid,.option-grid,.photo-more-grid{grid-template-columns:1fr}
-  .gallery-grid img{height:250px}
-}
-
-@media (max-width:380px){
-  .brand-mark{width:38px;height:38px;flex-basis:38px}
-  .brand strong{font-size:16px}
-  .brand small{font-size:8px;letter-spacing:1.3px}
-  .site-footer>div:nth-child(2){grid-template-columns:1fr 1fr;gap:10px 12px}
-  .site-footer>div:nth-child(2) a{font-size:13px}
-  .band-more-grid{gap:0 9px}
-  .band-more-grid b{font-size:12px}
-  .band-more-grid small{font-size:8px}
-}
