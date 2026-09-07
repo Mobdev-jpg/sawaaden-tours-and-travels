@@ -7,7 +7,7 @@
   const siteTitle = 'Sawaaden Tours & Travels — Discover the Northeast with Us';
   const siteDescription = 'Sikkim Sawaaden Tours and Travels, popularly known as Silk Route Tourism, is a trusted travel company based in Gangtok';
   const siteUrl = 'https://sikkimtouraandtravel.in/';
-  const logoUrl = `${siteUrl}favicon.svg?v=2`;
+  const logoUrl = `${siteUrl}favicon.png?v=2`;
 
   const upsertMeta = (key, value, type = 'name') => {
     let el = document.head.querySelector(`meta[${type}="${key}"]`);
@@ -47,7 +47,7 @@
       document.head.appendChild(icon);
     }
     icon.href = logoUrl;
-    icon.type = 'image/svg+xml';
+    icon.type = 'image/png';
 
     let appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
     if (!appleIcon) {
