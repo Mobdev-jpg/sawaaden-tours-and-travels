@@ -1,0 +1,35 @@
+name: Generate favicon PNG
+
+on:
+  push:
+    paths:
+      - 'favicon.svg'
+      - '.github/workflows/generate-favicon.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  generate-favicon:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Convert SVG to PNG
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin
+          rsvg-convert -w 96 -h 96 favicon.svg -o favicon.png
+
+      - name: Commit PNG favicon
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add favicon.png
+          if git diff --cached --quiet; then
+            echo "No favicon changes to commit."
+          else
+            git commit -m "Generate PNG favicon"
+            git push
+          fi
