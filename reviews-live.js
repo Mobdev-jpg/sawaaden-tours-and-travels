@@ -108,12 +108,18 @@
   };
 
   const removePriceBookingNotes = () => {
-    const marker = 'Price & booking note';
+    const markers = [
+      'Price & booking note',
+      'Displayed prices are researched 2026 market benchmarks',
+      'Final pricing depends on date, group size, hotel category, vehicle, permits, meals, road access and seasonal demand.'
+    ];
+
     document.querySelectorAll('body *').forEach((el) => {
-      if (el.children.length === 0 && el.textContent.trim().startsWith(marker)) {
-        const container = el.closest('.price-note, .price-booking-note, .booking-note, .note, .modal-note') || el.parentElement;
-        if (container) container.remove();
-      }
+      if (!markers.some((marker) => el.textContent.includes(marker))) return;
+      if (el.children.length > 4) return;
+
+      const target = el.closest('.price-note, .price-booking-note, .booking-note, .modal-note') || el;
+      if (target && !target.classList.contains('tour-modal')) target.remove();
     });
   };
 
@@ -121,7 +127,6 @@
     removePriceBookingNotes();
     const observer = new MutationObserver(removePriceBookingNotes);
     observer.observe(document.body, { childList: true, subtree: true });
-    setTimeout(() => observer.disconnect(), 60000);
   };
 
   const escapeHtml = (value) => String(value ?? '')
