@@ -25,6 +25,9 @@
 .gallery-grid figcaption{min-height:42px;display:flex;align-items:center}
 .media-note{line-height:1.6}
 
+/* Hide the market-price booking note without changing any other content or layout. */
+.tour-note{display:none!important}
+
 @media(min-width:1200px){
   .gallery-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
 }
