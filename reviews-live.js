@@ -127,18 +127,82 @@
     }
   };
 
-  // The old implementation scanned every element in <body> on every DOM mutation.
-  // Opening a package modal creates many nodes at once, so that global MutationObserver
-  // caused repeated full-page scans and made the entire site appear to freeze.
   const removePriceBookingNotes = () => {
     document.querySelectorAll('.tour-modal-content .tour-note, .tour-modal-content .price-note, .tour-modal-content .price-booking-note, .tour-modal-content .booking-note, .tour-modal-content .modal-note').forEach((el) => el.remove());
   };
 
+  const packageInfo = {
+    'Sikkim Darjeeling Tour Package': {
+      duration: '4 Days / 3 Nights', price: '₹6,600',
+      days: ['Day 1 — Arrival in Gangtok: Pickup from NJP/Bagdogra and transfer to Gangtok. Check in and relax.', 'Day 2 — Gangtok Sightseeing: Tashi View Point, Ganesh Tok, Hanuman Tok, Enchey Monastery and MG Marg.', 'Day 3 — East Sikkim: Tsomgo Lake and Baba Mandir, with Nathula Pass subject to permit, weather and access.', 'Day 4 — Departure: Breakfast and transfer towards NJP/Bagdogra/Siliguri.'],
+      note: 'A compact Sikkim and Darjeeling-style holiday for travellers with limited time. Final sightseeing order depends on permits, weather and road conditions.'
+    },
+    'Sikkim & Darjeeling Tour Package': {
+      duration: '5 Days / 4 Nights', price: '₹7,900',
+      days: ['Day 1 — Arrival in Gangtok: Pickup from NJP/Bagdogra and transfer to Gangtok.', 'Day 2 — Gangtok Sightseeing: Tashi View Point, Ganesh Tok, Hanuman Tok, Enchey Monastery and MG Marg.', 'Day 3 — Tsomgo & Nathula Circuit: Tsomgo Lake, Baba Mandir and Nathula Pass when permitted.', 'Day 4 — Darjeeling: Transfer towards Darjeeling with local sightseeing depending on arrival time.', 'Day 5 — Departure: Breakfast and transfer to NJP/Bagdogra/Siliguri.'],
+      note: 'A balanced Sikkim–Darjeeling combination covering major viewpoints and high-altitude East Sikkim highlights.'
+    },
+    'Sikkim Darjeeling Tour': {
+      duration: '6 Days / 5 Nights', price: '₹8,300',
+      days: ['Day 1 — Arrival in Gangtok: Pickup from NJP/Bagdogra and transfer to Gangtok.', 'Day 2 — Gangtok Sightseeing: Tashi View Point, Ganesh Tok, Hanuman Tok, Enchey Monastery and MG Marg.', 'Day 3 — Tsomgo & Nathula: Tsomgo Lake, Baba Mandir and Nathula Pass when permitted.', 'Day 4 — West Sikkim / Pelling: Scenic transfer and selected Pelling sightseeing such as Skywalk, Pemayangtse or Rabdentse.', 'Day 5 — Darjeeling: Transfer to Darjeeling and local sightseeing based on arrival time.', 'Day 6 — Departure: Breakfast and transfer to NJP/Bagdogra/Siliguri.'],
+      note: 'The longer option gives more time for Sikkim sightseeing before the Darjeeling connection.'
+    }
+  };
+
+  const openSawaadenPackage = (name) => {
+    const info = packageInfo[name];
+    if (!info) return;
+    document.querySelector('.sawaaden-package-detail-modal')?.remove();
+    const overlay = document.createElement('div');
+    overlay.className = 'sawaaden-package-detail-modal';
+    overlay.innerHTML = `<div class="sawaaden-package-detail" role="dialog" aria-modal="true" aria-label="${name}"><button class="sawaaden-package-close" type="button" aria-label="Close">×</button><div class="package-eyebrow">SAWAADEN PACKAGE</div><h2>${name}</h2><div class="package-meta"><strong>${info.duration}</strong><strong>${info.price} <span>/ PERSON</span></strong></div><p class="package-detail-note">${info.note}</p><h3>Day-by-day itinerary</h3><ol>${info.days.map(day => `<li>${day}</li>`).join('')}</ol><div class="package-detail-footer"><span>Price shown per person</span><a class="package-whatsapp" target="_blank" rel="noopener noreferrer" href="https://wa.me/919775552239?text=${encodeURIComponent(`Hello Sawaaden Tours & Travels, I came to your website and was referred by 9332095869. I am interested in the ${name}. Please share the exact current price, inclusions and availability.`)}">Enquire on WhatsApp →</a></div></div>`;
+    document.body.appendChild(overlay);
+    const close = () => overlay.remove();
+    overlay.querySelector('.sawaaden-package-close')?.addEventListener('click', close);
+    overlay.addEventListener('click', (event) => { if (event.target === overlay) close(); });
+  };
+
+  const enhanceTopSawaadenPackages = () => {
+    const root = document.querySelector('.tour-modal-content') || document.querySelector('[role="dialog"]');
+    if (!root) return;
+    const labels = [...root.querySelectorAll('*')].filter((el) => el.children.length === 0 && el.textContent.trim() === 'SAWAADEN PACKAGE');
+    labels.slice(0, 3).forEach((label) => {
+      let card = label.parentElement;
+      for (let i = 0; i < 5 && card; i++, card = card.parentElement) {
+        const text = card.textContent || '';
+        if (text.includes('₹') && /\d+\s*Days/.test(text) && /Nights/.test(text)) break;
+      }
+      if (!card || card.dataset.sawaadenEnhanced === '1') return;
+      const heading = card.querySelector('h3, h2');
+      if (!heading) return;
+      const name = heading.textContent.trim();
+      if (!packageInfo[name]) return;
+      card.dataset.sawaadenEnhanced = '1';
+
+      const priceText = [...card.querySelectorAll('*')].find((el) => /^₹[\d,]+$/.test(el.textContent.trim()));
+      if (priceText && !priceText.querySelector('.package-per-person')) {
+        const suffix = document.createElement('span');
+        suffix.className = 'package-per-person';
+        suffix.textContent = ' / PERSON';
+        priceText.appendChild(suffix);
+      }
+
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'sawaaden-view-package';
+      button.textContent = 'View full package →';
+      button.addEventListener('click', (event) => { event.preventDefault(); event.stopPropagation(); openSawaadenPackage(name); });
+      card.appendChild(button);
+    });
+  };
+
   const watchDynamicTourModal = () => {
-    // Only inspect the small modal content after package/plan interactions.
     const handlePackageInteraction = (event) => {
       if (!event.target.closest('.package-card a, .option-grid a, .destination-list a, .band-more-grid a, .plan-catalog-grid a, .nav-cta')) return;
-      requestAnimationFrame(removePriceBookingNotes);
+      requestAnimationFrame(() => {
+        removePriceBookingNotes();
+        enhanceTopSawaadenPackages();
+      });
     };
     document.addEventListener('click', handlePackageInteraction, true);
   };
@@ -177,6 +241,22 @@
       .story-details-content p{margin:0 0 12px}
       .story-details-content ul{margin:0 0 14px;padding-left:20px}
       .story-details-content li{margin:4px 0}
+      .package-per-person{font-size:.62em;letter-spacing:.04em;font-weight:700;opacity:.85;margin-left:4px;white-space:nowrap}
+      .sawaaden-view-package{display:block;width:100%;margin-top:18px;padding:12px 16px;border:0;border-radius:999px;background:#b56a2d;color:#fff;font:700 13px/1.2 inherit;cursor:pointer;text-align:center;transition:transform .18s ease,filter .18s ease}
+      .sawaaden-view-package:hover{filter:brightness(1.08);transform:translateY(-1px)}
+      .sawaaden-package-detail-modal{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;padding:22px;background:rgba(5,12,10,.76);backdrop-filter:blur(7px)}
+      .sawaaden-package-detail{position:relative;width:min(720px,94vw);max-height:88vh;overflow:auto;background:#2a210e;color:#f4eee2;border:1px solid rgba(231,194,142,.28);border-radius:22px;padding:34px;box-shadow:0 24px 80px rgba(0,0,0,.45)}
+      .sawaaden-package-detail .package-eyebrow{font-size:11px;letter-spacing:.16em;font-weight:800;color:#e7a85e;margin-bottom:10px}
+      .sawaaden-package-detail h2{font:700 clamp(28px,4vw,42px)/1.1 Georgia,serif;margin:0 42px 14px 0;color:#f4eee2}
+      .sawaaden-package-detail h3{font-size:17px;margin:26px 0 10px;color:#e7c28e}
+      .sawaaden-package-detail .package-meta{display:flex;flex-wrap:wrap;gap:12px 24px;font-size:16px;margin-bottom:18px}
+      .sawaaden-package-detail .package-meta span{font-size:.68em;letter-spacing:.05em;opacity:.8}
+      .package-detail-note{color:#d6c8ae;line-height:1.65}
+      .sawaaden-package-detail ol{margin:0;padding-left:22px;color:#e5dbc9;line-height:1.65}
+      .sawaaden-package-detail li{margin:9px 0}
+      .sawaaden-package-close{position:absolute;top:15px;right:15px;width:42px;height:42px;border:0;border-radius:50%;background:#0c554c;color:#fff;font-size:25px;cursor:pointer}
+      .package-detail-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:28px;padding-top:18px;border-top:1px solid rgba(231,194,142,.18);font-size:12px;color:#cbbda5}
+      .package-whatsapp{display:inline-flex;align-items:center;justify-content:center;padding:11px 17px;border-radius:999px;background:#b56a2d;color:#fff!important;text-decoration:none;font-weight:800}
       @media(max-width:700px){
         .package-grid{grid-template-columns:1fr!important;gap:30px!important}
         .package-card,.package-card.featured{width:100%;max-width:540px;margin:0 auto}
@@ -200,6 +280,9 @@
         .package-card img,.package-card.featured img{height:225px!important}
         .card-body{padding:21px!important}
         .card-body h3{font-size:27px!important}
+        .sawaaden-package-detail{padding:25px 20px}
+        .package-detail-footer{display:block}
+        .package-whatsapp{margin-top:12px;width:100%}
       }
       @media(max-width:600px){
         .band-more[open]{margin-bottom:82px}
