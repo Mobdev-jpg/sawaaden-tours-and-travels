@@ -123,8 +123,11 @@
 
 /* Sawaaden brand logo */
 .brand-mark{
-  background:#f6f3ec url('"C:\Users\arpan\Downloads\ChatGPT Image Sep 5, 2026, 08_39_28 PM.png"
-"C:\Users\arpan\Downloads\node-v26.8.1-x64.msi"?v=3') center/contain no-repeat !important;
+  background-color:#f6f3ec !important;
+  background-image:url('./favicon.png?v=4') !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
+  background-size:contain !important;
   color:transparent !important;
   font-size:0 !important;
   overflow:hidden;
