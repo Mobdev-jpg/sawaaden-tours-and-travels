@@ -5,7 +5,7 @@
   const googleMapsUrl = `https://www.google.com/maps/place/?q=place_id:${placeId}`;
   const brandName = 'Sawaaden Tours & Travels';
   const siteTitle = 'Sawaaden Tours & Travels — Discover the Northeast with Us';
-  const siteDescription = 'We are dedicated to providing authentic and memorable travel experiences across Sikkim and the Eastern Himalayas.';
+  const siteDescription = 'Sikkim Sawaaden Tours and Travels, popularly known as Silk Route Tourism, is one of the trusted tourism operators based in Gangtok, offering personalized travel experiences across Sikkim and the Eastern Himalayas.';
   const siteUrl = 'https://sikkimtouraandtravel.in/';
   const logoUrl = `${siteUrl}favicon.png?v=2`;
 
@@ -75,13 +75,53 @@
     if (aboutHeading) aboutHeading.innerHTML = 'About Sikkim Sawaaden<br>Tours & Travels.';
 
     const aboutSummary = document.querySelector('.story-summary');
-    if (aboutSummary) aboutSummary.textContent = 'We provide authentic and memorable travel experiences across Sikkim and the Eastern Himalayas.';
+    if (aboutSummary) aboutSummary.textContent = 'Sikkim Sawaaden Tours and Travels, popularly known as Silk Route Tourism, is one of the trusted tourism operators based in Gangtok, creating personalized and memorable journeys across Sikkim and the Eastern Himalayas.';
 
     const aboutDetails = document.querySelector('.story-details');
     if (aboutDetails) {
       aboutDetails.setAttribute('aria-label', 'About Sikkim Sawaaden Tours and Travels');
       const summary = aboutDetails.querySelector('summary');
-      if (summary) summary.firstChild.textContent = 'Read more about Sikkim Sawaaden Tours and Travels';
+      if (summary) summary.firstChild.textContent = 'Read the full Sawaaden Tours & Travels description';
+
+      const content = aboutDetails.querySelector('.story-details-content');
+      if (content) {
+        content.innerHTML = `
+          <p><strong>Sikkim Sawaaden Tours and Travels, popularly known as Silk Route Tourism, is one of the trusted travel companies based in Gangtok.</strong> We are dedicated to providing authentic and memorable travel experiences across Sikkim and the Eastern Himalayas.</p>
+
+          <p>We are passionate about helping travelers discover the breathtaking landscapes, rich cultural heritage, monasteries, mountain villages, and hidden treasures of the region. We create <strong>personalized travel experiences</strong> based on your interests, preferences, budget, and travel style.</p>
+
+          <p>Whether you are looking for a peaceful mountain retreat, an adventurous road trip, a family vacation, a honeymoon, or a cultural exploration, <strong>we are here to make your journey comfortable, well-planned, and hassle-free.</strong></p>
+
+          <h3>Explore the Best of Sikkim With Us</h3>
+          <p>We offer a wide range of travel services to help you explore Sikkim and the surrounding Himalayan destinations, including:</p>
+          <ul>
+            <li>Customized Sikkim tour packages</li>
+            <li>Silk Route and Old Silk Route tours</li>
+            <li>North, East, South, and West Sikkim tours</li>
+            <li>Gangtok sightseeing and local excursions</li>
+            <li>Honeymoon and family holiday packages</li>
+            <li>Hotel and homestay bookings</li>
+            <li>Transportation and vehicle arrangements</li>
+            <li>Adventure, nature, and cultural tours</li>
+            <li>Group and corporate travel assistance</li>
+          </ul>
+          <p>We carefully plan every itinerary to give you a smooth and enjoyable experience, from your arrival in Sikkim to your departure.</p>
+
+          <h3>Discover the Hidden Gems of the Himalayas</h3>
+          <p>With our <strong>local knowledge and experience in Sikkim tourism</strong>, we help you explore more than just the popular attractions. We take you to scenic viewpoints, pristine lakes, historic monasteries, Himalayan villages, tea gardens, cultural landmarks, and lesser-known destinations that showcase the true character of Sikkim.</p>
+
+          <p>From the historic <strong>Silk Route and Old Silk Route</strong> to the mountains of North Sikkim, the peaceful landscapes of West Sikkim, the monasteries of East Sikkim, and the beautiful destinations of South Sikkim, <strong>we create journeys that allow you to experience the region at your own pace.</strong></p>
+
+          <p>Our team focuses on <strong>personalized service, reliable transportation, comfortable stays, practical itineraries, and genuine local hospitality.</strong> We work closely with our guests to understand what they want from their trip and design a journey around their needs.</p>
+
+          <h3>Your Journey, Our Local Expertise</h3>
+          <p>For us, a trip to Sikkim is more than simply visiting tourist attractions. It is about experiencing the <strong>mountains, culture, people, history, food, traditions, and natural beauty</strong> that make the Eastern Himalayas special.</p>
+
+          <p>Whether you are visiting Sikkim for the first time or returning to explore somewhere new, <strong>we are committed to making your journey memorable from beginning to end.</strong></p>
+
+          <p><strong>Plan your Sikkim adventure with Sikkim Sawaaden Tours and Travels — popularly known as Silk Route Tourism — and discover the Himalayas with us.</strong> 🏔️✨</p>
+        `;
+      }
     }
 
     if (!document.querySelector('#sawaaden-website-schema')) {
