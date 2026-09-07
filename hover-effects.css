@@ -13,10 +13,28 @@
 .button:active,.nav-cta:active,.gallery-actions a:active,.cta-actions a:active,.card-body a:active{transform:scale(.97)}
 .button:focus-visible,.nav-cta:focus-visible,.gallery-actions a:focus-visible,.cta-actions a:focus-visible,.card-body a:focus-visible,.destination-list a:focus-visible,.band-more-grid a:focus-visible{outline:3px solid rgba(201,121,55,.35);outline-offset:3px}
 
-/* Give the Google review button a clearer breathing space below the rating copy. */
-.review-heading .button-light{margin-top:12px}
+/* Google review header spacing: keep the rating, copy and button visually separated. */
+.review-heading{align-items:flex-start!important;gap:70px!important}
+.review-heading>div:last-child{min-width:330px;padding-top:6px}
+.review-heading>div:last-child>p{margin:9px 0 0!important;line-height:1.7!important}
+.review-heading .button-light{display:inline-flex;align-items:center;justify-content:center;margin-top:18px!important;line-height:1.25}
+
+/* Keep the larger gallery dense but readable on desktop and responsive on smaller screens. */
+.gallery-grid{gap:18px!important}
+.gallery-grid figure{min-width:0}
+.gallery-grid figcaption{min-height:42px;display:flex;align-items:center}
+.media-note{line-height:1.6}
+
+@media(min-width:1200px){
+  .gallery-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
 
 @media(max-width:850px){
   body{padding-bottom:76px}
   .nav-cta{display:flex !important;position:fixed !important;left:5%;right:5%;bottom:14px;width:auto;max-width:none;height:50px;align-items:center;justify-content:center;padding:0 20px;z-index:1000;box-shadow:0 8px 24px rgba(16,45,38,.22)}
+  .review-heading{gap:0!important}
+  .review-heading>div:last-child{min-width:0;padding-top:24px}
+  .review-heading>div:last-child>p{margin-top:10px!important}
+  .review-heading .button-light{margin-top:18px!important}
+  .gallery-grid{gap:14px!important}
 }
