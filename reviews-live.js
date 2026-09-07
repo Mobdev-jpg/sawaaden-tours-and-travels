@@ -57,19 +57,17 @@
     }
     appleIcon.href = logoUrl;
 
-    const existingBrand = document.querySelector('.brand-identity-heading');
-    if (!existingBrand) {
-      const hero = document.querySelector('.hero-content');
-      if (hero) {
-        const heading = document.createElement('p');
-        heading.className = 'brand-identity-heading';
-        heading.textContent = siteTitle;
-        hero.insertBefore(heading, hero.querySelector('.eyebrow') || hero.firstChild);
+    const hero = document.querySelector('.hero-content');
+    let brandHeading = hero?.querySelector('.brand-identity-heading');
+    const heroTitle = hero?.querySelector('h1');
+    if (hero && heroTitle) {
+      if (!brandHeading) {
+        brandHeading = document.createElement('p');
+        brandHeading.className = 'brand-identity-heading';
+        brandHeading.textContent = siteTitle;
       }
+      heroTitle.insertAdjacentElement('afterend', brandHeading);
     }
-
-    const heroCopy = document.querySelector('.hero-copy');
-    if (heroCopy) heroCopy.remove();
 
     const aboutHeading = document.querySelector('.story-copy h2');
     if (aboutHeading) aboutHeading.innerHTML = 'About Sikkim Sawaaden<br>Tours & Travels.';
@@ -185,7 +183,7 @@
   const injectStyles = () => {
     const style = document.createElement('style');
     style.textContent = `
-      .brand-identity-heading{margin:0 0 10px;font-size:clamp(16px,2vw,22px);font-weight:700;letter-spacing:.01em;color:#f4eee2}
+      .brand-identity-heading{margin:16px 0 0;font-size:clamp(16px,2vw,22px);font-weight:700;letter-spacing:.01em;color:#f4eee2;line-height:1.3}
       .live-review-status{font-size:11px;color:#aebdb6;margin:12px 0 0;line-height:1.5}
       .live-review-status a{color:#e7c28e;text-decoration:underline}
       .review-card.live-review{display:flex;flex-direction:column}
