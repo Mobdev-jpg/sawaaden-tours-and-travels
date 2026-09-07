@@ -3,43 +3,59 @@
 
   const placeId = 'ChIJs2CCbxWl5jkR2Ovr-s0qSyk';
   const googleMapsUrl = `https://www.google.com/maps/place/?q=place_id:${placeId}`;
+  const brandName = 'Sawaaden Tours & Travels';
+  const siteTitle = 'Sawaaden Tours & Travels — Discover the Northeast with Us';
+  const siteDescription = 'Sikkim Sawaaden Tours and Travels, popularly known as Silk Route Tourism, is a trusted travel company based in Gangtok';
+  const siteUrl = 'https://sikkimtouraandtravel.in/';
+  const logoUrl = `${siteUrl}favicon.svg?v=2`;
+
+  const upsertMeta = (key, value, type = 'name') => {
+    let el = document.head.querySelector(`meta[${type}="${key}"]`);
+    if (!el) {
+      el = document.createElement('meta');
+      el.setAttribute(type, key);
+      document.head.appendChild(el);
+    }
+    el.setAttribute('content', value);
+  };
 
   const applyBrandIdentity = () => {
-    const brandName = 'Sawaaden Tours & Travels';
-    const siteTitle = 'Sawaaden Tours & Travels — Discover the Northeast with Us';
     document.title = siteTitle;
-
-    const setMeta = (selector, attribute, value) => {
-      let el = document.querySelector(selector);
-      if (!el) {
-        el = document.createElement('meta');
-        el.setAttribute(attribute === 'property' ? 'property' : 'name', selector.includes('[property=') ? selector.match(/\[property="([^"]+)"\]/)?.[1] || '' : selector.match(/\[name="([^"]+)"\]/)?.[1] || '');
-        document.head.appendChild(el);
-      }
-      el.setAttribute(attribute, value);
-    };
-
-    const upsertMeta = (key, value, type = 'property') => {
-      let el = document.head.querySelector(`meta[${type}="${key}"]`);
-      if (!el) {
-        el = document.createElement('meta');
-        el.setAttribute(type, key);
-        document.head.appendChild(el);
-      }
-      el.setAttribute('content', value);
-    };
-
-    upsertMeta('og:site_name', brandName);
-    upsertMeta('og:title', siteTitle);
-    upsertMeta('og:description', 'A distinguished Sikkim-based tourism operator helping travellers explore Sikkim and the wider Northeast with practical itineraries, local route knowledge and personalised travel support.');
-    upsertMeta('og:url', 'https://sikkimtouraandtravel.in/');
-    upsertMeta('og:image', 'https://sikkimtouraandtravel.in/favicon.svg');
+    upsertMeta('description', siteDescription, 'name');
+    upsertMeta('application-name', brandName, 'name');
+    upsertMeta('og:site_name', brandName, 'property');
+    upsertMeta('og:title', siteTitle, 'property');
+    upsertMeta('og:description', siteDescription, 'property');
+    upsertMeta('og:url', siteUrl, 'property');
+    upsertMeta('og:image', logoUrl, 'property');
     upsertMeta('twitter:title', siteTitle, 'name');
-    upsertMeta('twitter:description', 'Explore Sikkim and the Northeast with Sawaaden Tours & Travels — local route planning, stays, transport, sightseeing and travel support.', 'name');
-    upsertMeta('twitter:image', 'https://sikkimtouraandtravel.in/favicon.svg', 'name');
+    upsertMeta('twitter:description', siteDescription, 'name');
+    upsertMeta('twitter:image', logoUrl, 'name');
 
     let canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.href = 'https://sikkimtouraandtravel.in/';
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = siteUrl;
+
+    let icon = document.querySelector('link[rel="icon"]');
+    if (!icon) {
+      icon = document.createElement('link');
+      icon.rel = 'icon';
+      document.head.appendChild(icon);
+    }
+    icon.href = logoUrl;
+    icon.type = 'image/svg+xml';
+
+    let appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
+    if (!appleIcon) {
+      appleIcon = document.createElement('link');
+      appleIcon.rel = 'apple-touch-icon';
+      document.head.appendChild(appleIcon);
+    }
+    appleIcon.href = logoUrl;
 
     const existingBrand = document.querySelector('.brand-identity-heading');
     if (!existingBrand) {
@@ -53,15 +69,11 @@
     }
 
     const heroCopy = document.querySelector('.hero-copy');
-    if (heroCopy) {
-      heroCopy.textContent = 'Sawaaden Tours & Travels is a distinguished Sikkim-based tourism operator, creating practical, memorable Himalayan journeys with local route knowledge, carefully planned stays, reliable transportation and personalised travel support.';
-    }
+    if (heroCopy) heroCopy.textContent = siteDescription;
 
     const storyCopy = document.querySelector('.story-copy');
     const storyParagraph = storyCopy?.querySelector('p:nth-of-type(2)');
-    if (storyParagraph) {
-      storyParagraph.textContent = 'Sawaaden Tours & Travels is a distinguished tourism operator based in Gangtok, Sikkim, helping travellers experience the region through thoughtfully planned itineraries, local knowledge, comfortable stays, transportation and dependable on-trip support. From the high passes of East Sikkim to North Sikkim, the Silk Route, West Sikkim, South Sikkim and Darjeeling, every journey is planned around the traveller’s route, pace and priorities.';
-    }
+    if (storyParagraph) storyParagraph.textContent = `${siteDescription}, providing thoughtfully planned tours, transportation, accommodation and travel support across Sikkim and the Northeast.`;
 
     if (!document.querySelector('#sawaaden-website-schema')) {
       const schema = document.createElement('script');
@@ -71,8 +83,16 @@
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         name: brandName,
-        alternateName: ['Sawaaden', 'Sawaaden Tours & Travels', 'Sikkim Sawaaden Tours and Travels'],
-        url: 'https://sikkimtouraandtravel.in/'
+        alternateName: ['Sawaaden', 'Sawaaden Tours & Travels', 'Sikkim Sawaaden Tours and Travels', 'Silk Route Tourism'],
+        description: siteDescription,
+        url: siteUrl,
+        publisher: {
+          '@type': 'TravelAgency',
+          name: brandName,
+          image: logoUrl,
+          url: siteUrl,
+          telephone: '+91-97755-52239'
+        }
       });
       document.head.appendChild(schema);
     }
