@@ -31,13 +31,10 @@
     upsertMeta('twitter:title', siteTitle);
     upsertMeta('twitter:description', siteDescription);
     upsertMeta('twitter:image', logoUrl);
-
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.href = siteUrl;
-
     const icon = document.querySelector('link[rel="icon"]');
     if (icon) { icon.href = logoUrl; icon.type = 'image/svg+xml'; }
-
     const brandMark = document.querySelector('.brand-mark');
     if (brandMark) {
       brandMark.textContent = '';
@@ -52,7 +49,6 @@
       logo.decoding = 'async';
       brandMark.appendChild(logo);
     }
-
     const hero = document.querySelector('.hero-content');
     const heroTitle = hero?.querySelector('h1');
     if (hero && heroTitle && !hero.querySelector('.brand-identity-heading')) {
@@ -61,7 +57,6 @@
       heading.textContent = siteTitle;
       heroTitle.insertAdjacentElement('afterend', heading);
     }
-
     const heroCopy = document.querySelector('.hero-copy');
     if (heroCopy) heroCopy.textContent = siteDescription;
   };
@@ -69,7 +64,6 @@
   const escapeHtml = (value) => String(value ?? '')
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/\"/g, '&quot;').replace(/'/g, '&#039;');
-
   const stars = (rating) => {
     const score = Math.max(0, Math.min(5, Number(rating) || 0));
     const rounded = Math.round(score);
@@ -112,71 +106,17 @@
       .sawaaden-gallery-more-grid img{display:block;width:100%;height:190px;object-fit:cover}
       .sawaaden-gallery-more-grid figcaption{padding:10px 12px;font-size:11px;font-weight:700;color:#31423b;line-height:1.35}
       @media(max-width:900px){.sawaaden-gallery-more-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.review-heading>div:last-child{min-width:0}}
-      @media(max-width:520px){
-        .review-heading>div:last-child{width:100%}
-        .review-heading .button-light{margin-top:20px}
-        .live-review .review-meta{display:block}
-        .live-review .review-date{display:block;margin-top:3px}
-        .brand-identity-heading{font-size:14px;line-height:1.35}
-        .story-details-content{font-size:13px;line-height:1.65;padding:18px 17px 20px}
-        .sawaaden-gallery-more-grid{grid-template-columns:1fr 1fr;gap:10px}
-        .sawaaden-gallery-more-grid img{height:150px}
-      }
+      @media(max-width:520px){.review-heading>div:last-child{width:100%}.review-heading .button-light{margin-top:20px}.live-review .review-meta{display:block}.live-review .review-date{display:block;margin-top:3px}.brand-identity-heading{font-size:14px;line-height:1.35}.story-details-content{font-size:13px;line-height:1.65;padding:18px 17px 20px}.sawaaden-gallery-more-grid{grid-template-columns:1fr 1fr;gap:10px}.sawaaden-gallery-more-grid img{height:150px}}
     `;
     document.head.appendChild(style);
   };
 
   const galleryPhotos = [
-    ['A view from Pelling','A view from a nearby view in PELLING,.jpg'],
-    ['Pelling landscape','Inexplicable Pelling.jpg'],
-    ['Kangchenjunga at Pelling','Kanchanjungha at Pelling.jpg'],
-    ['Kanchenjhunga Range','Kanchenjhunga Range.jpg'],
-    ['Kanchenjunga and neighbouring peaks','Kanchenjunga and neighbouring peaks.jpg'],
-    ['Kanchenjunga from Pelling','Kanchenjunga Peak as viewed from Pelling, Sikkim.jpg'],
-    ['Kanchenjunga peak','Kanchenjunga peak.jpg'],
-    ['Kanchenjunga View from Pelling Hotel','Kanchenjunga View from Pelling Hotel.jpg'],
-    ['Kanchenjunga view from Pelling','Kanchenjunga view from Pelling.jpg'],
-    ['Pelling mountain view','Kanchenjungha and.. premonsoon season view from Pelling , West Sikkim.jpg'],
-    ['Yuksom culture','An aged man playing Chyabrung Drum, Yuksom, West Sikkim, India.jpg'],
-    ['Yuksom forest bridge','Bridge en Route to Dubdi Monastery from Yuksom.jpg'],
-    ['Norbugang prayer hall','Prayer Hall near Norbugang Coronation throne near Yuksom (Gyalshing), West Sikkim 08.jpg'],
-    ['Norbugang prayer hall interior','Prayer Hall near Norbugang Coronation throne near Yuksom (Gyalshing), West Sikkim 09.jpg'],
-    ['Norbugang heritage site','Prayer Hall near Norbugang Coronation throne near Yuksom (Gyalshing), West Sikkim 10.jpg'],
-    ['Yuksom Main Street','Yuksom Main Street.jpg'],
-    ['Yuksom Valley','Yuksom Valley.jpg'],
-    ['Yuksom Village','Yuksom Village.jpg'],
-    ['Yuksom village scene','Yuksom1.jpg'],
-    ['Yuksom landscape','Yuksom2.jpg'],
-    ['Gangtok town','A beautiful town.jpg'],
-    ['Gangtok B20 event','B20 meeting under India’s G20 presidency begins in Gangtok today 01.jpg'],
-    ['Gangtok B20 event','B20 meeting under India’s G20 presidency begins in Gangtok today 02.jpg'],
-    ['Gangtok B20 event','B20 meeting under India’s G20 presidency begins in Gangtok today 03.jpg'],
-    ['Gangtok B20 event','B20 meeting under India’s G20 presidency begins in Gangtok today 04.jpg'],
-    ['Chandmari, Gangtok','Chandmari.jpg'],
-    ['Gangtok at dusk','Dusk In Gangtok.jpg'],
-    ['East Sikkim Silk Route','Dzuluk.jpg'],
-    ['Gangtok Smart City','ICCC Gangtok Smart City.jpg'],
-    ['Sikkim valley','Sikkim valley.jpg'],
-    ['Gangtok wooden bridge','Sikkim-Gangtok wooden bridge.jpg'],
-    ['Tadong aerial view','Tadong areal view of Gangtok.jpg'],
-    ['Traditional wooden houses','Traditional wooden houses in Gangtok, Sikkim.jpg'],
-    ['Gangtok wellness park','Wellness park at Gangtok.jpg'],
-    ['White Hall, Gangtok','White Hall located on the ridge road, Gangtok.jpg'],
-    ['Tsomgo Lake','Changu (Tsomgo) Lake in Sikkim.jpg'],
-    ['Changu Lake','Changu (Tsomgo) Lake.jpg'],
-    ['Changu forest','Changu forest HDR.jpg'],
-    ['Tsomgo Lake panorama','Changu Lake (Tsomgo).jpg'],
-    ['Tsomgo Lake viewpoint','Changu Lake 1.jpg'],
-    ['Tsomgo Lake beauty','Changu lake beauty.jpg'],
-    ['Tsomgo Lake near Nathula','Changu lake near nathula.jpg'],
-    ['Tsomgo Lake panorama','Tsomgo Lake (51937982856).jpg'],
-    ['Tsomgo Lake panorama','Tsomgo Lake (51938059928).jpg'],
-    ['Tsomgo Lake, East Sikkim','Tsomgo Lake (Changu Lake), East Sikkim,1.jpg'],
-    ['Tsomgo Lake, East Sikkim','Tsomgo Lake (Changu Lake), East Sikkim,2.jpg'],
-    ['Tsomgo Lake, East Sikkim','Tsomgo Lake (Changu Lake), East Sikkim,3.jpg'],
-    ['Tsomgo Lake, East Sikkim','Tsomgo Lake (Changu Lake), East Sikkim,4.jpg'],
-    ['Tsomgo Lake, East Sikkim','Tsomgo Lake (Changu Lake), East Sikkim,5.jpg'],
-    ['Tsomgo Lake, East Sikkim','Tsomgo Lake (Changu Lake), East Sikkim,6.jpg']
+    ['A view from Pelling','A view from a nearby view in PELLING,.jpg'],['Pelling landscape','Inexplicable Pelling.jpg'],['Kangchenjunga at Pelling','Kanchanjungha at Pelling.jpg'],['Kanchenjhunga Range','Kanchenjhunga Range.jpg'],['Kanchenjunga and neighbouring peaks','Kanchenjunga and neighbouring peaks.jpg'],['Kanchenjunga from Pelling','Kanchenjunga Peak as viewed from Pelling, Sikkim.jpg'],['Kanchenjunga peak','Kanchenjunga peak.jpg'],['Kanchenjunga View from Pelling Hotel','Kanchenjunga View from Pelling Hotel.jpg'],['Kanchenjunga view from Pelling','Kanchenjunga view from Pelling.jpg'],['Pelling mountain view','Kanchenjungha and.. premonsoon season view from Pelling , West Sikkim.jpg'],
+    ['Yuksom culture','An aged man playing Chyabrung Drum, Yuksom, West Sikkim, India.jpg'],['Yuksom forest bridge','Bridge en Route to Dubdi Monastery from Yuksom.jpg'],['Norbugang prayer hall','Prayer Hall near Norbugang Coronation throne near Yuksom (Gyalshing), West Sikkim 08.jpg'],['Norbugang prayer hall interior','Prayer Hall near Norbugang Coronation throne near Yuksom (Gyalshing), West Sikkim 09.jpg'],['Norbugang heritage site','Prayer Hall near Norbugang Coronation throne near Yuksom (Gyalshing), West Sikkim 10.jpg'],['Yuksom Main Street','Yuksom Main Street.jpg'],['Yuksom Valley','Yuksom Valley.jpg'],['Yuksom Village','Yuksom Village.jpg'],['Yuksom village scene','Yuksom1.jpg'],['Yuksom landscape','Yuksom2.jpg'],
+    ['Gangtok town','A beautiful town.jpg'],['Gangtok B20 event','B20 meeting under India’s G20 presidency begins in Gangtok today 01.jpg'],['Gangtok B20 event','B20 meeting under India’s G20 presidency begins in Gangtok today 02.jpg'],['Gangtok B20 event','B20 meeting under India’s G20 presidency begins in Gangtok today 03.jpg'],['Gangtok B20 event','B20 meeting under India’s G20 presidency begins in Gangtok today 04.jpg'],['Chandmari, Gangtok','Chandmari.jpg'],['Gangtok at dusk','Dusk In Gangtok.jpg'],['East Sikkim Silk Route','Dzuluk.jpg'],['Gangtok Smart City','ICCC Gangtok Smart City.jpg'],['Sikkim valley','Sikkim valley.jpg'],['Gangtok wooden bridge','Sikkim-Gangtok wooden bridge.jpg'],['Tadong aerial view','Tadong areal view of Gangtok.jpg'],['Traditional wooden houses','Traditional wooden houses in Gangtok, Sikkim.jpg'],['Gangtok wellness park','Wellness park at Gangtok.jpg'],['White Hall, Gangtok','White Hall located on the ridge road, Gangtok.jpg'],
+    ['Tsomgo Lake','Changu (Tsomgo) Lake in Sikkim.jpg'],['Changu Lake','Changu (Tsomgo) Lake.jpg'],['Changu forest','Changu forest HDR.jpg'],['Tsomgo Lake panorama','Changu Lake (Tsomgo).jpg'],['Tsomgo Lake viewpoint','Changu Lake 1.jpg'],['Tsomgo Lake beauty','Changu lake beauty.jpg'],['Tsomgo Lake near Nathula','Changu lake near nathula.jpg'],['Tsomgo Lake panorama','Tsomgo Lake (51937982856).jpg'],['Tsomgo Lake panorama','Tsomgo Lake (51938059928).jpg'],['Tsomgo Lake, East Sikkim','Tsomgo Lake (Changu Lake), East Sikkim,1.jpg'],['Tsomgo Lake, East Sikkim','Tsomgo Lake (Changu Lake), East Sikkim,2.jpg'],['Tsomgo Lake, East Sikkim','Tsomgo Lake (Changu Lake), East Sikkim,3.jpg'],['Tsomgo Lake, East Sikkim','Tsomgo Lake (Changu Lake), East Sikkim,4.jpg'],['Tsomgo Lake, East Sikkim','Tsomgo Lake (Changu Lake), East Sikkim,5.jpg'],['Tsomgo Lake, East Sikkim','Tsomgo Lake (Changu Lake), East Sikkim,6.jpg'],
+    ['Khecheopalri Lake','Khecheopalri Lake.jpg'],['Khecheopalri viewpoint','View point of Khecheopalri Lake, West Sikkim district.jpg']
   ];
 
   const setupGallery = () => {
@@ -184,55 +124,38 @@
     if (!grid || grid.dataset.expanded === '1') return;
     const figures = [...grid.querySelectorAll('figure')];
     if (figures.length < 8) return;
-
     const more = document.createElement('details');
     more.className = 'sawaaden-gallery-more';
     const summary = document.createElement('summary');
     summary.innerHTML = `View 54 more photos <span>+</span>`;
     more.appendChild(summary);
-
     const moreGrid = document.createElement('div');
     moreGrid.className = 'sawaaden-gallery-more-grid';
-
     figures.slice(8).forEach((figure) => moreGrid.appendChild(figure));
-
     galleryPhotos.forEach(([title, file]) => {
       const figure = document.createElement('figure');
       const img = document.createElement('img');
-      img.loading = 'lazy';
-      img.decoding = 'async';
-      img.alt = title;
+      img.loading = 'lazy'; img.decoding = 'async'; img.alt = title;
       img.src = `https://commons.wikimedia.org/wiki/Special:Redirect/file/${encodeURIComponent(file)}`;
-      const caption = document.createElement('figcaption');
-      caption.textContent = title;
-      figure.append(img, caption);
-      moreGrid.appendChild(figure);
+      const caption = document.createElement('figcaption'); caption.textContent = title;
+      figure.append(img, caption); moreGrid.appendChild(figure);
     });
-
     more.appendChild(moreGrid);
     grid.insertAdjacentElement('afterend', more);
     grid.dataset.expanded = '1';
   };
 
   const updateReviewHeader = (data) => {
-    const rating = Number(data.rating);
-    const count = Number(data.userRatingCount);
+    const rating = Number(data.rating); const count = Number(data.userRatingCount);
     if (!Number.isFinite(rating) || !Number.isFinite(count)) return;
     document.querySelectorAll('.review-score').forEach((el) => { el.innerHTML = `${rating.toFixed(1)} <span>★</span>`; });
     document.querySelectorAll('.hero-note').forEach((el) => { el.innerHTML = `<strong>${rating.toFixed(1)} ★</strong><span>Google rating<br>${count.toLocaleString()} reviews</span>`; });
-    document.querySelectorAll('.stats div').forEach((el) => {
-      const label = el.querySelector('span')?.textContent?.toLowerCase() || '';
-      const value = el.querySelector('strong');
-      if (label.includes('google rating')) value.textContent = `${rating.toFixed(1)}★`;
-      if (label.includes('google reviews')) value.textContent = `${count.toLocaleString()}+`;
-    });
+    document.querySelectorAll('.stats div').forEach((el) => { const label = el.querySelector('span')?.textContent?.toLowerCase() || ''; const value = el.querySelector('strong'); if (!value) return; if (label.includes('google rating')) value.textContent = `${rating.toFixed(1)}★`; if (label.includes('google reviews')) value.textContent = `${count.toLocaleString()}+`; });
   };
 
   const renderReviews = (data) => {
-    const grid = document.querySelector('.review-grid');
-    if (!grid) return;
-    const reviews = Array.isArray(data.reviews) ? data.reviews : [];
-    if (!reviews.length) return;
+    const grid = document.querySelector('.review-grid'); if (!grid) return;
+    const reviews = Array.isArray(data.reviews) ? data.reviews : []; if (!reviews.length) return;
     grid.innerHTML = reviews.map((review) => {
       const author = escapeHtml(review.authorAttribution?.displayName || 'Google traveller');
       const text = escapeHtml(review.text?.text || 'This traveller left a Google rating without written feedback.');
@@ -244,30 +167,22 @@
   };
 
   const showStatus = (message, includeLink = false) => {
-    const heading = document.querySelector('.review-heading > div:last-child');
-    if (!heading) return;
+    const heading = document.querySelector('.review-heading > div:last-child'); if (!heading) return;
     let status = heading.querySelector('.live-review-status');
     if (!status) { status = document.createElement('p'); status.className = 'live-review-status'; heading.appendChild(status); }
     status.innerHTML = includeLink ? `${escapeHtml(message)} <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer">Open Google Maps ↗</a>` : escapeHtml(message);
   };
 
   const load = async () => {
-    applyBrandIdentity();
-    injectStyles();
-    setupGallery();
+    applyBrandIdentity(); injectStyles(); setupGallery();
     try {
       const response = await fetch('/api/reviews', { headers: { Accept: 'application/json' }, cache: 'no-store' });
       if (!response.ok) throw new Error(`Reviews API returned ${response.status}`);
       const data = await response.json();
       if (!data.rating || !data.userRatingCount) throw new Error('Google review data is incomplete.');
-      updateReviewHeader(data);
-      renderReviews(data);
-      showStatus('Live Google reviews loaded on this visit.');
-    } catch (error) {
-      showStatus('Live Google reviews are not connected yet. Showing the Google listing instead.', true);
-    }
+      updateReviewHeader(data); renderReviews(data); showStatus('Live Google reviews loaded on this visit.');
+    } catch (error) { showStatus('Live Google reviews are not connected yet. Showing the Google listing instead.', true); }
   };
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', load, { once: true });
-  else load();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', load, { once: true }); else load();
 })();
