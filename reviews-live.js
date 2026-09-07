@@ -7,7 +7,7 @@
   const siteTitle = 'Sawaaden Tours & Travels — Discover the Northeast with Us';
   const siteDescription = 'Sawaaden Tours & Travels, popularly known as Silk Route Tourism, is one of the most trusted travel companies based in Gangtok. We are dedicated to providing authentic and memorable travel experiences across Sikkim and the Eastern Himalayas.';
   const siteUrl = 'https://sikkimtouraandtravel.in/';
-  const logoUrl = `${siteUrl}sawaaden-logo.svg?v=3`;
+  const logoUrl = `${siteUrl}sawaaden-logo.svg?v=4`;
 
   const upsertMeta = (key, value, type = 'name') => {
     let el = document.head.querySelector(`meta[${type}="${key}"]`);
@@ -61,10 +61,18 @@
     if (brandMark) {
       brandMark.textContent = '';
       brandMark.setAttribute('aria-hidden', 'true');
+      brandMark.style.backgroundImage = `url("${logoUrl}")`;
+      brandMark.style.backgroundSize = 'cover';
+      brandMark.style.backgroundPosition = 'center';
       const logo = document.createElement('img');
       logo.src = logoUrl;
-      logo.alt = '';
+      logo.alt = 'Sawaaden Tours & Travels';
       logo.loading = 'eager';
+      logo.decoding = 'async';
+      logo.onerror = () => {
+        logo.style.display = 'none';
+        brandMark.style.backgroundImage = 'url("/favicon.svg")';
+      };
       brandMark.appendChild(logo);
     }
 
@@ -125,11 +133,9 @@
       'Displayed prices are researched 2026 market benchmarks',
       'Final pricing depends on date, group size, hotel category, vehicle, permits, meals, road access and seasonal demand.'
     ];
-
     document.querySelectorAll('body *').forEach((el) => {
       if (!markers.some((marker) => el.textContent.includes(marker))) return;
       if (el.children.length > 4) return;
-
       const target = el.closest('.price-note, .price-booking-note, .booking-note, .modal-note') || el;
       if (target && !target.classList.contains('tour-modal')) target.remove();
     });
@@ -142,11 +148,8 @@
   };
 
   const escapeHtml = (value) => String(value ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/\"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/\"/g, '&quot;').replace(/'/g, '&#039;');
 
   const stars = (rating) => {
     const score = Math.max(0, Math.min(5, Number(rating) || 0));
@@ -173,21 +176,21 @@
       .story-details>summary::-webkit-details-marker{display:none}
       .story-details>summary span{font-size:20px;font-weight:400;transition:transform .2s ease}
       .story-details[open]>summary span{transform:rotate(45deg)}
-      .story-details-content{padding:0 0 16px;max-width:760px;font-size:14px;line-height:1.75}
-      .story-details-content h3{margin:22px 0 8px;font-size:18px}
+      .story-details-content{padding:20px 22px 22px;max-width:760px;font-size:14px;line-height:1.75;background:rgba(35,72,62,.10);border:1px solid rgba(23,58,49,.10);border-radius:12px;margin-bottom:14px;color:#25352f}
+      .story-details-content h3{margin:22px 0 8px;font-size:18px;color:#173a31}
       .story-details-content p{margin:0 0 12px}
       .story-details-content ul{margin:0 0 14px;padding-left:20px}
       .story-details-content li{margin:4px 0}
       @media(max-width:700px){
-        .package-grid{grid-template-columns:1fr!important;gap:28px!important}
-        .package-card,.package-card.featured{width:100%;max-width:560px;margin:0 auto}
-        .package-card img,.package-card.featured img{height:260px!important}
-        .card-body{padding:26px!important}
-        .card-body h3{font-size:31px!important;margin:9px 0 12px}
+        .package-grid{grid-template-columns:1fr!important;gap:30px!important}
+        .package-card,.package-card.featured{width:100%;max-width:540px;margin:0 auto}
+        .package-card img,.package-card.featured img{height:250px!important}
+        .card-body{padding:24px!important}
+        .card-body h3{font-size:30px!important;line-height:1.18;margin:9px 0 12px}
         .card-body p{font-size:15px!important;line-height:1.65;margin-bottom:22px}
         .card-body a{font-size:14px}
-        .option-grid{grid-template-columns:1fr!important;gap:22px!important}
-        .option-grid img{height:240px!important}
+        .option-grid{grid-template-columns:1fr!important;gap:24px!important}
+        .option-grid img{height:230px!important}
         .option-grid article>div{padding:22px!important}
       }
       @media(max-width:520px){
@@ -195,12 +198,12 @@
         .live-review .review-meta{display:block}
         .live-review .review-date{display:block;margin-top:3px}
         .brand-identity-heading{font-size:14px;line-height:1.35}
-        .story-details-content{font-size:13px;line-height:1.65}
+        .story-details-content{font-size:13px;line-height:1.65;padding:18px 17px 20px}
         .story-details-content h3{font-size:16px}
         .story-details>summary{font-size:12px}
-        .package-card img,.package-card.featured img{height:230px!important}
-        .card-body{padding:22px!important}
-        .card-body h3{font-size:28px!important}
+        .package-card img,.package-card.featured img{height:225px!important}
+        .card-body{padding:21px!important}
+        .card-body h3{font-size:27px!important}
       }
       @media(max-width:600px){
         .band-more[open]{margin-bottom:82px}
@@ -222,12 +225,8 @@
   const updateReviewHeader = (data) => {
     const rating = Number(data.rating);
     const count = Number(data.userRatingCount);
-    document.querySelectorAll('.review-score').forEach((el) => {
-      el.innerHTML = `${rating.toFixed(1)} <span>★</span>`;
-    });
-    document.querySelectorAll('.hero-note').forEach((el) => {
-      el.innerHTML = `<strong>${rating.toFixed(1)} ★</strong><span>Google rating<br>${count.toLocaleString()} reviews</span>`;
-    });
+    document.querySelectorAll('.review-score').forEach((el) => { el.innerHTML = `${rating.toFixed(1)} <span>★</span>`; });
+    document.querySelectorAll('.hero-note').forEach((el) => { el.innerHTML = `<strong>${rating.toFixed(1)} ★</strong><span>Google rating<br>${count.toLocaleString()} reviews</span>`; });
     document.querySelectorAll('.stats div').forEach((el) => {
       const label = el.querySelector('span')?.textContent?.toLowerCase() || '';
       const value = el.querySelector('strong');
@@ -242,20 +241,13 @@
     if (!grid) return;
     const reviews = Array.isArray(data.reviews) ? data.reviews : [];
     if (!reviews.length) return;
-
     grid.innerHTML = reviews.map((review) => {
       const author = escapeHtml(review.authorAttribution?.displayName || 'Google traveller');
       const text = escapeHtml(review.text?.text || 'This traveller left a Google rating without written feedback.');
       const date = escapeHtml(review.relativePublishTimeDescription || 'Google review');
       const reviewUrl = review.googleMapsUri || data.googleMapsUri || googleMapsUrl;
       const rating = Number(review.rating) || 0;
-      return `<article class="review-card live-review">
-        <div class="stars" aria-label="${rating} out of 5 stars">${stars(rating)}</div>
-        <h3>${author}</h3>
-        <div class="review-meta"><small>Google review</small><span class="review-date">${date}</span></div>
-        <p class="review-text">${text}</p>
-        <a class="review-google" href="${escapeHtml(reviewUrl)}" target="_blank" rel="noopener noreferrer">Read on Google ↗</a>
-      </article>`;
+      return `<article class="review-card live-review"><div class="stars" aria-label="${rating} out of 5 stars">${stars(rating)}</div><h3>${author}</h3><div class="review-meta"><small>Google review</small><span class="review-date">${date}</span></div><p class="review-text">${text}</p><a class="review-google" href="${escapeHtml(reviewUrl)}" target="_blank" rel="noopener noreferrer">Read on Google ↗</a></article>`;
     }).join('');
   };
 
@@ -263,11 +255,7 @@
     const heading = document.querySelector('.review-heading > div:last-child');
     if (!heading) return;
     let status = heading.querySelector('.live-review-status');
-    if (!status) {
-      status = document.createElement('p');
-      status.className = 'live-review-status';
-      heading.appendChild(status);
-    }
+    if (!status) { status = document.createElement('p'); status.className = 'live-review-status'; heading.appendChild(status); }
     status.innerHTML = includeLink ? `${escapeHtml(message)} <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer">Open Google Maps ↗</a>` : escapeHtml(message);
   };
 
@@ -288,9 +276,6 @@
     }
   };
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadLiveReviews, { once: true });
-  } else {
-    loadLiveReviews();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadLiveReviews, { once: true });
+  else loadLiveReviews();
 })();
