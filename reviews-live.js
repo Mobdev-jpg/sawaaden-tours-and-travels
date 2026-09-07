@@ -71,10 +71,6 @@
     const heroCopy = document.querySelector('.hero-copy');
     if (heroCopy) heroCopy.textContent = siteDescription;
 
-    const storyCopy = document.querySelector('.story-copy');
-    const storyParagraph = storyCopy?.querySelector('p:nth-of-type(2)');
-    if (storyParagraph) storyParagraph.textContent = `${siteDescription}, providing thoughtfully planned tours, transportation, accommodation and travel support across Sikkim and the Northeast.`;
-
     if (!document.querySelector('#sawaaden-website-schema')) {
       const schema = document.createElement('script');
       schema.id = 'sawaaden-website-schema';
@@ -122,11 +118,24 @@
       .live-review .review-date{color:#7b827e;font-size:10px}
       .live-review .review-text{white-space:pre-line}
       .live-review .review-google{margin-top:auto;padding-top:14px;font-size:10px;font-weight:700;color:#173a31}
+      .story-details{margin-top:18px;border-top:1px solid rgba(23,58,49,.16);border-bottom:1px solid rgba(23,58,49,.16)}
+      .story-details>summary{cursor:pointer;list-style:none;padding:14px 0;font-size:13px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:16px}
+      .story-details>summary::-webkit-details-marker{display:none}
+      .story-details>summary span{font-size:20px;font-weight:400;transition:transform .2s ease}
+      .story-details[open]>summary span{transform:rotate(45deg)}
+      .story-details-content{padding:0 0 16px;max-width:760px;font-size:14px;line-height:1.75}
+      .story-details-content h3{margin:22px 0 8px;font-size:18px}
+      .story-details-content p{margin:0 0 12px}
+      .story-details-content ul{margin:0 0 14px;padding-left:20px}
+      .story-details-content li{margin:4px 0}
       @media(max-width:520px){
         .reviews-section{padding-bottom:120px}
         .live-review .review-meta{display:block}
         .live-review .review-date{display:block;margin-top:3px}
         .brand-identity-heading{font-size:14px;line-height:1.35}
+        .story-details-content{font-size:13px;line-height:1.65}
+        .story-details-content h3{font-size:16px}
+        .story-details>summary{font-size:12px}
       }
       @media(max-width:600px){
         .band-more[open]{margin-bottom:82px}
