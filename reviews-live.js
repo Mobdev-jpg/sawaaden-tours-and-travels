@@ -5,9 +5,9 @@
   const googleMapsUrl = `https://www.google.com/maps/place/?q=place_id:${placeId}`;
   const brandName = 'Sawaaden Tours & Travels';
   const siteTitle = 'Sawaaden Tours & Travels — Discover the Northeast with Us';
-  const siteDescription = 'Sikkim Sawaaden Tours and Travels, popularly known as Silk Route Tourism, is one of the trusted tourism operators based in Gangtok, offering personalized travel experiences across Sikkim and the Eastern Himalayas.';
+  const siteDescription = 'Sawaaden Tours & Travels, popularly known as Silk Route Tourism, is one of the most trusted travel companies based in Gangtok. We are dedicated to providing authentic and memorable travel experiences across Sikkim and the Eastern Himalayas.';
   const siteUrl = 'https://sikkimtouraandtravel.in/';
-  const logoUrl = `${siteUrl}favicon.png?v=2`;
+  const logoUrl = `${siteUrl}sawaaden-logo.svg?v=3`;
 
   const upsertMeta = (key, value, type = 'name') => {
     let el = document.head.querySelector(`meta[${type}="${key}"]`);
@@ -47,7 +47,7 @@
       document.head.appendChild(icon);
     }
     icon.href = logoUrl;
-    icon.type = 'image/png';
+    icon.type = 'image/svg+xml';
 
     let appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
     if (!appleIcon) {
@@ -56,6 +56,17 @@
       document.head.appendChild(appleIcon);
     }
     appleIcon.href = logoUrl;
+
+    const brandMark = document.querySelector('.brand-mark');
+    if (brandMark) {
+      brandMark.textContent = '';
+      brandMark.setAttribute('aria-hidden', 'true');
+      const logo = document.createElement('img');
+      logo.src = logoUrl;
+      logo.alt = '';
+      logo.loading = 'eager';
+      brandMark.appendChild(logo);
+    }
 
     const hero = document.querySelector('.hero-content');
     let brandHeading = hero?.querySelector('.brand-identity-heading');
@@ -69,57 +80,20 @@
       heroTitle.insertAdjacentElement('afterend', brandHeading);
     }
 
+    const heroCopy = document.querySelector('.hero-copy');
+    if (heroCopy) heroCopy.textContent = siteDescription;
+
     const aboutHeading = document.querySelector('.story-copy h2');
     if (aboutHeading) aboutHeading.innerHTML = 'About Sikkim Sawaaden<br>Tours & Travels.';
 
     const aboutSummary = document.querySelector('.story-summary');
-    if (aboutSummary) aboutSummary.textContent = 'Sikkim Sawaaden Tours and Travels, popularly known as Silk Route Tourism, is one of the trusted tourism operators based in Gangtok, creating personalized and memorable journeys across Sikkim and the Eastern Himalayas.';
+    if (aboutSummary) aboutSummary.textContent = 'Sawaaden Tours & Travels, popularly known as Silk Route Tourism, is one of the most trusted travel companies based in Gangtok, creating personalized and memorable journeys across Sikkim and the Eastern Himalayas.';
 
     const aboutDetails = document.querySelector('.story-details');
     if (aboutDetails) {
       aboutDetails.setAttribute('aria-label', 'About Sikkim Sawaaden Tours and Travels');
       const summary = aboutDetails.querySelector('summary');
       if (summary) summary.firstChild.textContent = 'Read the full Sawaaden Tours & Travels description';
-
-      const content = aboutDetails.querySelector('.story-details-content');
-      if (content) {
-        content.innerHTML = `
-          <p><strong>Sikkim Sawaaden Tours and Travels, popularly known as Silk Route Tourism, is one of the trusted travel companies based in Gangtok.</strong> We are dedicated to providing authentic and memorable travel experiences across Sikkim and the Eastern Himalayas.</p>
-
-          <p>We are passionate about helping travelers discover the breathtaking landscapes, rich cultural heritage, monasteries, mountain villages, and hidden treasures of the region. We create <strong>personalized travel experiences</strong> based on your interests, preferences, budget, and travel style.</p>
-
-          <p>Whether you are looking for a peaceful mountain retreat, an adventurous road trip, a family vacation, a honeymoon, or a cultural exploration, <strong>we are here to make your journey comfortable, well-planned, and hassle-free.</strong></p>
-
-          <h3>Explore the Best of Sikkim With Us</h3>
-          <p>We offer a wide range of travel services to help you explore Sikkim and the surrounding Himalayan destinations, including:</p>
-          <ul>
-            <li>Customized Sikkim tour packages</li>
-            <li>Silk Route and Old Silk Route tours</li>
-            <li>North, East, South, and West Sikkim tours</li>
-            <li>Gangtok sightseeing and local excursions</li>
-            <li>Honeymoon and family holiday packages</li>
-            <li>Hotel and homestay bookings</li>
-            <li>Transportation and vehicle arrangements</li>
-            <li>Adventure, nature, and cultural tours</li>
-            <li>Group and corporate travel assistance</li>
-          </ul>
-          <p>We carefully plan every itinerary to give you a smooth and enjoyable experience, from your arrival in Sikkim to your departure.</p>
-
-          <h3>Discover the Hidden Gems of the Himalayas</h3>
-          <p>With our <strong>local knowledge and experience in Sikkim tourism</strong>, we help you explore more than just the popular attractions. We take you to scenic viewpoints, pristine lakes, historic monasteries, Himalayan villages, tea gardens, cultural landmarks, and lesser-known destinations that showcase the true character of Sikkim.</p>
-
-          <p>From the historic <strong>Silk Route and Old Silk Route</strong> to the mountains of North Sikkim, the peaceful landscapes of West Sikkim, the monasteries of East Sikkim, and the beautiful destinations of South Sikkim, <strong>we create journeys that allow you to experience the region at your own pace.</strong></p>
-
-          <p>Our team focuses on <strong>personalized service, reliable transportation, comfortable stays, practical itineraries, and genuine local hospitality.</strong> We work closely with our guests to understand what they want from their trip and design a journey around their needs.</p>
-
-          <h3>Your Journey, Our Local Expertise</h3>
-          <p>For us, a trip to Sikkim is more than simply visiting tourist attractions. It is about experiencing the <strong>mountains, culture, people, history, food, traditions, and natural beauty</strong> that make the Eastern Himalayas special.</p>
-
-          <p>Whether you are visiting Sikkim for the first time or returning to explore somewhere new, <strong>we are committed to making your journey memorable from beginning to end.</strong></p>
-
-          <p><strong>Plan your Sikkim adventure with Sikkim Sawaaden Tours and Travels — popularly known as Silk Route Tourism — and discover the Himalayas with us.</strong> 🏔️✨</p>
-        `;
-      }
     }
 
     if (!document.querySelector('#sawaaden-website-schema')) {
@@ -183,7 +157,10 @@
   const injectStyles = () => {
     const style = document.createElement('style');
     style.textContent = `
+      .brand-mark{display:grid!important;place-items:center;background:#173a31!important;overflow:hidden!important}
+      .brand-mark img{width:100%;height:100%;display:block;object-fit:cover}
       .brand-identity-heading{margin:16px 0 0;font-size:clamp(16px,2vw,22px);font-weight:700;letter-spacing:.01em;color:#f4eee2;line-height:1.3}
+      .hero-copy{max-width:680px}
       .live-review-status{font-size:11px;color:#aebdb6;margin:12px 0 0;line-height:1.5}
       .live-review-status a{color:#e7c28e;text-decoration:underline}
       .review-card.live-review{display:flex;flex-direction:column}
@@ -201,6 +178,18 @@
       .story-details-content p{margin:0 0 12px}
       .story-details-content ul{margin:0 0 14px;padding-left:20px}
       .story-details-content li{margin:4px 0}
+      @media(max-width:700px){
+        .package-grid{grid-template-columns:1fr!important;gap:28px!important}
+        .package-card,.package-card.featured{width:100%;max-width:560px;margin:0 auto}
+        .package-card img,.package-card.featured img{height:260px!important}
+        .card-body{padding:26px!important}
+        .card-body h3{font-size:31px!important;margin:9px 0 12px}
+        .card-body p{font-size:15px!important;line-height:1.65;margin-bottom:22px}
+        .card-body a{font-size:14px}
+        .option-grid{grid-template-columns:1fr!important;gap:22px!important}
+        .option-grid img{height:240px!important}
+        .option-grid article>div{padding:22px!important}
+      }
       @media(max-width:520px){
         .reviews-section{padding-bottom:120px}
         .live-review .review-meta{display:block}
@@ -209,6 +198,9 @@
         .story-details-content{font-size:13px;line-height:1.65}
         .story-details-content h3{font-size:16px}
         .story-details>summary{font-size:12px}
+        .package-card img,.package-card.featured img{height:230px!important}
+        .card-body{padding:22px!important}
+        .card-body h3{font-size:28px!important}
       }
       @media(max-width:600px){
         .band-more[open]{margin-bottom:82px}
