@@ -6,12 +6,15 @@
   .package-card,.option-grid article,.gallery-grid figure,.photo-more-grid figure,.review-card{transition:transform .25s ease,box-shadow .25s ease;will-change:transform}
   .package-card:hover,.option-grid article:hover,.gallery-grid figure:hover,.photo-more-grid figure:hover,.review-card:hover{transform:translateY(-7px) scale(1.015);box-shadow:0 16px 32px rgba(23,34,29,.14)}
   .package-card img,.option-grid img,.gallery-grid img,.photo-more-grid img{transition:transform .35s ease}
-  .package-card:hover img,.option-grid article:hover img,.gallery-grid figure:hover img,.photo-more-grid figure:hover img{transform:scale(1.045)}
+  .package-card:hover img,.option-grid article:hover img,.gallery-grid img:hover,.photo-more-grid img:hover{transform:scale(1.045)}
   .destination-list a,.band-more-grid a{transition:transform .2s ease,padding-left .2s ease}
   .destination-list a:hover,.band-more-grid a:hover{transform:translateX(5px)}
 }
 .button:active,.nav-cta:active,.gallery-actions a:active,.cta-actions a:active,.card-body a:active{transform:scale(.97)}
 .button:focus-visible,.nav-cta:focus-visible,.gallery-actions a:focus-visible,.cta-actions a:focus-visible,.card-body a:focus-visible,.destination-list a:focus-visible,.band-more-grid a:focus-visible{outline:3px solid rgba(201,121,55,.35);outline-offset:3px}
+
+/* Give the Google review button a clearer breathing space below the rating copy. */
+.review-heading .button-light{margin-top:12px}
 
 @media(max-width:850px){
   body{padding-bottom:76px}
