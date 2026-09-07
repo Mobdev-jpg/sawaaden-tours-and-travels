@@ -1,4 +1,4 @@
-/* Hover effects only. Responsive layout stays in style.css. */
+/* Hover effects and the small mobile-only interaction layer. */
 @media (hover:hover) and (pointer:fine){
   .button,.nav-cta,.gallery-actions a,.cta-actions a,.card-body a{transition:transform .2s ease,box-shadow .2s ease,background-color .2s ease;will-change:transform}
   .button:hover,.nav-cta:hover,.gallery-actions a:hover,.cta-actions a:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 10px 24px rgba(16,45,38,.18)}
@@ -12,3 +12,7 @@
 }
 .button:active,.nav-cta:active,.gallery-actions a:active,.cta-actions a:active,.card-body a:active{transform:scale(.97)}
 .button:focus-visible,.nav-cta:focus-visible,.gallery-actions a:focus-visible,.cta-actions a:focus-visible,.card-body a:focus-visible,.destination-list a:focus-visible,.band-more-grid a:focus-visible{outline:3px solid rgba(201,121,55,.35);outline-offset:3px}
+
+@media(max-width:850px){
+  .nav-cta{display:flex !important;position:fixed !important;left:5%;right:5%;bottom:14px;width:auto;max-width:none;height:50px;align-items:center;justify-content:center;padding:0 20px;z-index:1000;box-shadow:0 8px 24px rgba(16,45,38,.22)}
+}
