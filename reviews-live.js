@@ -127,24 +127,20 @@
     }
   };
 
+  // The old implementation scanned every element in <body> on every DOM mutation.
+  // Opening a package modal creates many nodes at once, so that global MutationObserver
+  // caused repeated full-page scans and made the entire site appear to freeze.
   const removePriceBookingNotes = () => {
-    const markers = [
-      'Price & booking note',
-      'Displayed prices are researched 2026 market benchmarks',
-      'Final pricing depends on date, group size, hotel category, vehicle, permits, meals, road access and seasonal demand.'
-    ];
-    document.querySelectorAll('body *').forEach((el) => {
-      if (!markers.some((marker) => el.textContent.includes(marker))) return;
-      if (el.children.length > 4) return;
-      const target = el.closest('.price-note, .price-booking-note, .booking-note, .modal-note') || el;
-      if (target && !target.classList.contains('tour-modal')) target.remove();
-    });
+    document.querySelectorAll('.tour-modal-content .tour-note, .tour-modal-content .price-note, .tour-modal-content .price-booking-note, .tour-modal-content .booking-note, .tour-modal-content .modal-note').forEach((el) => el.remove());
   };
 
   const watchDynamicTourModal = () => {
-    removePriceBookingNotes();
-    const observer = new MutationObserver(removePriceBookingNotes);
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Only inspect the small modal content after package/plan interactions.
+    const handlePackageInteraction = (event) => {
+      if (!event.target.closest('.package-card a, .option-grid a, .destination-list a, .band-more-grid a, .plan-catalog-grid a, .nav-cta')) return;
+      requestAnimationFrame(removePriceBookingNotes);
+    };
+    document.addEventListener('click', handlePackageInteraction, true);
   };
 
   const escapeHtml = (value) => String(value ?? '')
