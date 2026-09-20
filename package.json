@@ -1,0 +1,21 @@
+{
+  "name": "sawaaden-tours-and-travels",
+  "version": "1.0.0",
+  "description": "Sikkim Sawaaden Tours and Travels website with Vercel Web Analytics",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Static HTML site - no build step required'"
+  },
+  "keywords": [
+    "sikkim",
+    "tourism",
+    "tours",
+    "travels"
+  ],
+  "author": "Sawaaden Tours & Travels",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@vercel/analytics": "^1.3.1"
+  }
+}
