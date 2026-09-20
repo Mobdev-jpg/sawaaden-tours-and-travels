@@ -1,0 +1,12 @@
+{
+  "name": "sawaaden-tours-and-travels",
+  "version": "1.0.0",
+  "description": "Sawaaden Tours & Travels - Sikkim Tourism Website",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Static site - no build step required'"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.3.1"
+  }
+}
