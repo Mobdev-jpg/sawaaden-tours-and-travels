@@ -102,3 +102,185 @@ body{padding-bottom:0}.site-header{height:68px;padding:0 5%;box-shadow:0 2px 12p
     animation-iteration-count: 1 !important;
   }
 }
+
+
+/* Website-for-sale notice */
+.website-sale-banner {
+  position: relative;
+  z-index: 25;
+  color: #f8f5ed;
+  background:
+    radial-gradient(circle at 88% 10%, rgba(214, 171, 112, .2), transparent 30%),
+    linear-gradient(112deg, #102e27 0%, #1b493b 58%, #244f40 100%);
+  border-bottom: 1px solid rgba(231, 194, 142, .45);
+}
+.sale-banner-inner {
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding: 27px clamp(24px, 6.5vw, 100px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, .8fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 62px);
+}
+.sale-banner-kicker {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #e9c998;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+.sale-banner-copy h2 {
+  color: #fffaf0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(24px, 2.5vw, 36px);
+  font-weight: 800;
+  letter-spacing: .015em;
+  line-height: 1.12;
+}
+.sale-banner-copy p {
+  max-width: 760px;
+  margin-top: 9px;
+  color: #dce7df;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.sale-banner-contact {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 22px;
+  margin-top: 16px;
+}
+.sale-banner-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 18px;
+  border-radius: 999px;
+  background: #e8c48f;
+  color: #173a31;
+  font-size: 13px;
+  font-weight: 800;
+  transition: transform .2s ease, background .2s ease;
+}
+.sale-banner-primary:hover { transform: translateY(-2px); background: #f2d7ad; }
+.sale-banner-primary span { font-size: 16px; }
+.sale-banner-call {
+  color: #fffaf0;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,.45);
+  text-underline-offset: 4px;
+}
+.sale-banner-details {
+  min-height: 100px;
+  padding: 17px 18px;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 20px;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid rgba(232,196,143,.48);
+  border-radius: 16px;
+  background: rgba(255,255,255,.075);
+  transition: background .2s ease, transform .2s ease, border-color .2s ease;
+}
+.sale-banner-details:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.13);
+  border-color: #e8c48f;
+}
+.sale-details-icon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e8c48f;
+  color: #173a31;
+  font-size: 20px;
+}
+.sale-banner-details strong, .sale-banner-details small { display: block; }
+.sale-banner-details strong { color: #fffaf0; font-size: 14px; }
+.sale-banner-details small { margin-top: 4px; color: #d4e0d8; font-size: 11px; line-height: 1.45; }
+.sale-details-arrow { color: #e8c48f; font-size: 22px; }
+.sale-page { min-height: 100vh; background: #f6f3ec; color: #17221d; }
+.sale-page-topbar {
+  padding: 20px clamp(22px, 7vw, 110px);
+  display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  background: #173a31; color: #f7f1e7;
+}
+.sale-page-brand { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; }
+.sale-page-back { font-size: 13px; font-weight: 700; color: #e9c998; }
+.sale-page-hero {
+  padding: clamp(62px, 8vw, 110px) clamp(22px, 8vw, 130px) 76px;
+  color: #f8f5ed;
+  background:
+    linear-gradient(90deg, rgba(12,37,31,.95), rgba(12,37,31,.76)),
+    url('https://www.incredibleindia.gov.in/content/dam/incredible-india-v2/images/places/gangtok/gangtok-tsomgo-lake.jpg') center/cover;
+}
+.sale-page-hero-inner { width: min(1120px, 100%); margin: 0 auto; }
+.sale-page-eyebrow { color: #e9c998; font-size: 11px; font-weight: 800; letter-spacing: 2.4px; }
+.sale-page-hero h1 {
+  max-width: 850px; margin-top: 15px; font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 6.4vw, 76px); line-height: 1.04; letter-spacing: -1.6px;
+}
+.sale-page-hero p { max-width: 760px; margin-top: 20px; color: #e1e9e3; font-size: 17px; line-height: 1.8; }
+.sale-page-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+.sale-page-actions a { display: inline-flex; align-items: center; justify-content: center; padding: 13px 21px; border-radius: 999px; font-size: 13px; font-weight: 800; }
+.sale-page-actions .sale-action-primary { background: #e8c48f; color: #173a31; }
+.sale-page-actions .sale-action-secondary { border: 1px solid rgba(255,255,255,.45); color: #fff; }
+.sale-page-section { width: min(1120px, calc(100% - 44px)); margin: 0 auto; padding: 78px 0; }
+.sale-page-section-heading { max-width: 700px; margin-bottom: 34px; }
+.sale-page-section-heading span { color: #b97835; font-size: 10px; font-weight: 800; letter-spacing: 2.3px; }
+.sale-page-section-heading h2 { margin-top: 10px; color: #173a31; font-size: clamp(32px, 4vw, 48px); }
+.sale-page-section-heading p { margin-top: 12px; color: #657069; font-size: 15px; line-height: 1.75; }
+.sale-feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+.sale-feature {
+  padding: 25px; background: #fff; border: 1px solid #e5dfd3; border-radius: 15px;
+  box-shadow: 0 9px 24px rgba(23,34,29,.045);
+}
+.sale-feature-number { color: #b97835; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; }
+.sale-feature h3 { margin-top: 12px; color: #173a31; font-family: 'Playfair Display', serif; font-size: 22px; }
+.sale-feature p { margin-top: 9px; color: #657069; font-size: 13px; line-height: 1.7; }
+.sale-process { background: #e4ebe3; }
+.sale-process-inner { width: min(1120px, calc(100% - 44px)); margin: 0 auto; padding: 72px 0; }
+.sale-process-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 25px; }
+.sale-process-step { display: flex; gap: 15px; align-items: flex-start; }
+.sale-process-step b { flex: 0 0 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: #173a31; color: #f8f5ed; font-size: 13px; }
+.sale-process-step h3 { color: #173a31; font-size: 15px; }
+.sale-process-step p { margin-top: 5px; color: #617067; font-size: 12px; line-height: 1.65; }
+.sale-page-note {
+  margin-top: 26px; padding: 15px 18px; border-left: 3px solid #b97835;
+  background: rgba(255,255,255,.6); color: #647169; font-size: 12px; line-height: 1.65;
+}
+.sale-page-contact {
+  padding: 65px 22px; text-align: center; background: #173a31; color: #f8f5ed;
+}
+.sale-page-contact h2 { font-family: 'Playfair Display',serif; font-size: clamp(32px,4vw,46px); }
+.sale-page-contact p { max-width: 620px; margin: 12px auto 22px; color: #d6e0d9; font-size: 14px; line-height: 1.7; }
+.sale-page-contact a { display: inline-flex; padding: 13px 22px; border-radius: 999px; background: #e8c48f; color: #173a31; font-size: 13px; font-weight: 800; }
+.sale-page-footer { padding: 20px; text-align: center; background: #102e27; color: #aebdb5; font-size: 11px; }
+@media (max-width: 900px) {
+  .sale-banner-inner { grid-template-columns: 1fr; gap: 18px; padding: 24px 6%; }
+  .sale-banner-details { max-width: 560px; }
+  .sale-feature-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 600px) {
+  .sale-banner-inner { padding: 22px 6%; }
+  .sale-banner-copy h2 { font-size: 23px; }
+  .sale-banner-copy p { font-size: 12px; }
+  .sale-banner-contact { gap: 13px; }
+  .sale-banner-primary { padding: 10px 15px; font-size: 12px; }
+  .sale-banner-call { font-size: 12px; }
+  .sale-banner-details { min-height: 88px; padding: 14px; }
+  .sale-page-topbar { padding: 17px 20px; }
+  .sale-page-hero { padding: 60px 22px; }
+  .sale-page-hero h1 { letter-spacing: -.8px; }
+  .sale-page-hero p { font-size: 14px; }
+  .sale-page-section { padding: 58px 0; }
+  .sale-feature-grid, .sale-process-grid { grid-template-columns: 1fr; }
+  .sale-process-inner { padding: 58px 0; }
+}
